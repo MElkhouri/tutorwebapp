@@ -2,10 +2,18 @@ import React from "react";
 import axios from "axios";
 import {Formik, Field, ErrorMessage, Form} from 'formik'
 import * as Yup from "yup";
+import {useNavigate} from "react-router-dom";
+
 
 
 function Register() {
-    const validationSchema = Yup.object().shape({
+
+    const navigate = useNavigate();  
+  
+  
+  
+  
+  const validationSchema = Yup.object().shape({
         email: Yup.string().email()
           .required(),
         password: Yup.string()
@@ -31,7 +39,7 @@ function Register() {
         console.log("user created and posted" && response);
 
       });
-      
+      navigate('/login');
        
     };
 
