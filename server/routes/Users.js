@@ -39,9 +39,9 @@ router.post('/auth', function(request, response) {
 	// Ensure the input fields exists and are not empty
 	if (username && password) {
 		// Execute SQL query that'll select the account from the database based on the specified username and password
-		connection.query('SELECT * FROM webapp.users WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+		connection.query('SELECT * FROM webapp.users WHERE username = ? AND password = ? LIMIT 1', [username, password], function(error, results, fields) {
 			// If there is an issue with the query, output the error
-           // console.log(results);
+            //console.log(results);
 			if (error) throw error;
 			// If the account exists
 			if (results.length > 0) {
@@ -50,7 +50,8 @@ router.post('/auth', function(request, response) {
 				//request.session.username = username;
 				// Redirect to user home page
 				//response.redirect('/userHome'); 
-                // use navigate() to redirect pages, need to set global variables based on user id *****
+				
+				response.send(results[0].role);
 			} else {
 				response.send('Incorrect Username and/or Password!');
 			}			

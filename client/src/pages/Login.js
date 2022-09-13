@@ -2,9 +2,11 @@ import React from "react";
 import axios from "axios";
 import {Formik, Field, ErrorMessage, Form} from 'formik'
 import * as Yup from "yup";
-
+import {useNavigate} from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
+
     const validationSchema = Yup.object().shape({
         email: Yup.string().email()
           .required(),
@@ -16,8 +18,10 @@ function Login() {
       //console.log(data);  
       axios.post("http://localhost:3001/users/auth", data).then((response) => {
         console.log(response);
-
-      });
+        if(response.data === "1"){ //have to pass role through the response from server to navigate correctly. for now userhome is okay
+            navigate("/userhome");      
+        }
+      }).catch(console.error());
       
        
     };
