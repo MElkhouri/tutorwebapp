@@ -2,10 +2,15 @@ import React from "react";
 import axios from "axios";
 import {Formik, Field, ErrorMessage, Form} from 'formik'
 import * as Yup from "yup";
+import {useNavigate} from "react-router-dom";
+
 
 
 function Register() {
-    const validationSchema = Yup.object().shape({
+
+    const navigate = useNavigate();  
+  
+  const validationSchema = Yup.object().shape({
         email: Yup.string().email()
           .required(),
         password: Yup.string()
@@ -18,12 +23,14 @@ function Register() {
             .required(),
         school: Yup.string()
           .required(),
-        name: Yup.string()
+        first_name: Yup.string()
+            .required(),  
+        last_name: Yup.string()
             .required(),  
 
         
       });
-    const initialValues={ email: "", password: "", address: "", school: "", role: "1", name: "" } //have to add a way to input role in future for teachers "2" and make it a button, also make school a DDL
+    const initialValues={ email: "", password: "", address: "", school: "", role: "1", first_name: "", last_name: "" } //have to add a way to input role in future for teachers "2" and make it a button, also make school a DDL
     const onSubmit= (data) => {
      //console.log(data.body);
       // getting error sending "data" over probably because  
@@ -31,7 +38,7 @@ function Register() {
         console.log("user created and posted" && response);
 
       });
-      
+      navigate('/login');
        
     };
 
@@ -45,11 +52,18 @@ function Register() {
       <Form className="login form">
           
                <span>Register</span>
-                <ErrorMessage name = "name" component="error" />
+                <ErrorMessage name = "first name" component="error" />
                 <Field
-                    id= "name"
-                    name="name"
-                    placeholder="Enter your first and last name"
+                    id= "first_name"
+                    name="first_name"
+                    placeholder="Enter your first name"
+                    className="form-control inp_text"
+                  />
+                <ErrorMessage name = "last name" component="error" />
+                <Field
+                    id= "last_name"
+                    name="last_name"
+                    placeholder="Enter your last name"
                     className="form-control inp_text"
                   />
                 <ErrorMessage name = "email" component="error" /> 

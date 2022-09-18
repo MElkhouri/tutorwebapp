@@ -1,5 +1,6 @@
-const express = require('express');
-const app = express();
+const express =  require('express')
+const app = express()
+
 const cors = require("cors");
 
 app.use(express.json()); //express server 
@@ -15,12 +16,9 @@ const schoolsRouter = require('./routes/schools');
 app.use("/schools", schoolsRouter);
 
 
-
-
 //database connection and shit
-db.sequelize.sync().then( () => {
+db.sequelize.sync().then(() => {
     app.listen(3001, () => {
-        console.log('Server running on port 3001.');
+        console.log("Server running on port 3001")
     });
-});
-
+})
