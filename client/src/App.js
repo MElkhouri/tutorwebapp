@@ -1,9 +1,10 @@
-import './App.css';
+import './styles/App.css';
 import {BrowserRouter as Router, Route, Routes as Switch, Link} from 'react-router-dom';
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import UserHome from "./pages/User_Home";
+import Footer from './pages/footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path = "/userhome" element={<UserHome />} exact />
            </Switch>
         </Router>
+        <Footer />
     </div>
   );
 }

@@ -17,8 +17,6 @@ function Register() {
           .min(8, "Too Short!")
           .max(50, "Too Long!")
           .required(),
-        address: Yup.string()
-            .required(),
         role: Yup.number()
             .required(),
         school: Yup.string()
@@ -73,13 +71,6 @@ function Register() {
                   className="form-control inp_text"
                   id="email"
                 />
-                <ErrorMessage name = "address" component="error" />
-                <Field
-                  id = "address"
-                  name="address"
-                  placeholder="Enter your home address"
-                  className="form-control inp_text"
-                />
                 <ErrorMessage name = "school" component="error" />
                 <Field
                   id = "school"
@@ -101,6 +92,9 @@ function Register() {
                 <button type="submit">Register</button>
               </Form>
       </Formik>
+      <br />
+      <br />
+
         </div>
     )
 

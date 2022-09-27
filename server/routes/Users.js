@@ -5,8 +5,8 @@ const {Users} = require("../models");
 const connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'ishan2001',
-	database : 'razortutordb'
+	password : 'localSQL',
+	database : 'webapp'
 });
 
 router.get("/", (req, res) => { //
@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
    //console.log("At post: ", req.body);
     const[row, created] = await Users.findOrCreate({ //authenticates registration
         where: {email: req.body.email }, //username must be different whenever a user registers
-        defaults: {password: req.body.password, address: req.body.address, role: req.body.role, first_name: req.body.first_name, last_name: req.body.last_name, school: req.body.school}, //does not need to depend on password, address, or role for user creation
+        defaults: {password: req.body.password, role: req.body.role, first_name: req.body.first_name, last_name: req.body.last_name, school: req.body.school}, //does not need to depend on password, address, or role for user creation
     });
     if(created){
         res.send(row);
@@ -44,6 +44,7 @@ router.post('/auth', function(request, response) {
             //console.log(results);
 			if (error) throw error;
 			// If the account exists
+			
 			if (results.length > 0) {
 				// Authenticate the user
 				//request.session.loggedin = true;
@@ -53,7 +54,8 @@ router.post('/auth', function(request, response) {
 				
 				response.send(results[0]);
 			} else {
-				response.send('Incorrect Username and/or Password!');
+				
+				response.send('-1');
 			}			
 			response.end();
 		});

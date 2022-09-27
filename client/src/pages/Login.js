@@ -16,15 +16,19 @@ function Login() {
     const onSubmit = (data) => {
       //console.log(data);  
       axios.post("http://localhost:3001/users/auth", data).then((response) => {
-        console.log("response", response.data.role);
-        if(response.data.role === "1"){ //have to pass role through the response from server to navigate correctly. for now userhome is okay
+        console.log(response)
+        if(response.data === -1){
+          alert("Incorrect login credentials please try again.")
+        }
+        
+        else if(response.data.role === "1"){ //have to pass role through the response from server to navigate correctly. for now userhome is okay
           console.log("success");
           navigate(
             '/userhome', 
             {state: { user: response.data }}
           )
         }
-      }).catch(console.error());
+      }).catch(console.log('catch'));
       
        
     };
