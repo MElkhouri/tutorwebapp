@@ -17,6 +17,15 @@ function Register() {
           .min(8, "Too Short!")
           .max(50, "Too Long!")
           .required(),
+        confirm_password: Yup.string()
+          .when("password", {
+            is: val => (val && val.length > 0 ? true : false),
+            then: Yup.string().oneOf(
+              [Yup.ref("password")],
+              "Both password need to be the same"
+            )
+          })
+          .required(),
         role: Yup.number()
             .required(),
         school: Yup.string()
@@ -85,6 +94,13 @@ function Register() {
                   type="password"
                   name="password"
                   placeholder="Enter password"
+                  className="form-control"
+                />
+                <ErrorMessage name = "confirm_password" component="error" />
+                <Field
+                  type="password"
+                  name="confirm_password"
+                  placeholder="Confirm password"
                   className="form-control"
                 />
                 

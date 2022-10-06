@@ -28,6 +28,13 @@ function Login() {
             {state: { user: response.data }}
           )
         }
+        else if(response.data.role === "2"){ //have to pass role through the response from server to navigate correctly. for now userhome is okay
+          console.log("THIS IS TUTOR");
+          navigate(
+            '/tutorhome', 
+            {state: { user: response.data }}
+          )
+        }
       }).catch(console.log('catch'));
       
        

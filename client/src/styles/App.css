@@ -167,12 +167,9 @@ h2 {
 
 .navbar a {
   margin-left: 20px;
-  font-family: 'Comfortaa', cursive;
   text-decoration: none;
   color: rgb(0, 0, 0);
 }
-
-
 
 .leftSide {
   flex: 50%;

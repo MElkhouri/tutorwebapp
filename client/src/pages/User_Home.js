@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 
 function UserHome(props) {    
     const location = useLocation();
-    const userData = location.state;
+    const [userData] = useState(location.state);
     console.log('userdata: ', userData);
     console.log('props', props);
     const [value, onChange] = useState(new Date());
@@ -12,6 +12,7 @@ function UserHome(props) {
     return (
         <div>
             <div>
+                <h1>Hi, {userData.user.first_name} see your upcoming sessions</h1>
                 <h1>Your schedule for the week</h1>
                 <Calendar 
                     tileClassName={({ date, view }) => {if(date.getUTCDate() === 25){
@@ -34,7 +35,7 @@ function UserHome(props) {
                             </select>
                         <button >Find tutors</button>
                         </form>
-                    
+        
             </div>
         </div>
     )

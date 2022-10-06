@@ -1,0 +1,21 @@
+.home_container{
+    height: auto;
+    display: flex;
+    align-items: left;
+    padding-top: 10px;
+    flex-direction: column;
+    width: 100%;
+}
+.sidebar {
+    margin-top: 10px;
+    height: 500%;
+    width: 20%
+}
+
+.calendar { 
+    margin-top: -180px;
+    padding-left: 500px;
+}
+.tutor_welcome_message{
+    margin-left: -450px;
+}
