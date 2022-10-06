@@ -1,7 +1,9 @@
 import {useState} from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import Calendar from 'react-calendar';
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, useProSidebar,} from 'react-pro-sidebar';
+import MaterialIcon, {colorPalette} from 'material-icons-react';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import '../styles/Tutorhome.css'
 
 function TutorHome(props) {    
@@ -10,32 +12,37 @@ function TutorHome(props) {
     console.log('userdata: ', userData);
     console.log('props', props);
     const [value, onChange] = useState(new Date());
+    const { collapseSidebar } = useProSidebar();
 
 
     return (
         
         <div className='home_container'>
-            <div className='sidebar'>
-                <Sidebar>
-                    <Menu>                       
-                        <MenuItem> My Profile </MenuItem>
-                        <MenuItem> Help </MenuItem>
-                    </Menu>
-                </Sidebar>
-            </div>
-            
-            <div className='calendar'>
-                <h1 className='tutor_welcome_message'>Hi, {userData.user.first_name} see your upcoming sessions</h1>
-                <Calendar 
-                    tileClassName={({ date, view }) => {if(date.getUTCDate() === 25){
-                        return 'highlight';
-                    }}}
-                    onChange={onChange} 
-                    value={value} 
-                />
-                <br />
-            </div>
-            
+                <div className='sidebar'>                
+                    <Sidebar backgroundColor='rgb(45, 207, 12, 0.5)'>
+                        <Menu closeOnClick='true'>                       
+                            <MenuItem> My Profile </MenuItem>
+                            <MenuItem> Help </MenuItem>
+                        </Menu>                  
+                    </Sidebar>                                    
+                </div>
+                <main>                    
+                    <button className = 'collapse' onClick={() => collapseSidebar()}>
+                        <ArrowLeftIcon />
+                    </button>
+                </main>
+                <div className='calendar'>
+                    <h1>Hi, {userData.user.first_name} see your upcoming sessions</h1>
+                    <Calendar 
+                        tileClassName={({ date, view }) => {if(date.getUTCDate() === 25){
+                            return 'highlight';
+                        }}}
+                        onChange={onChange} 
+                        value={value} 
+                    />
+                    <br />
+                </div>
+
         </div>
             // <div className="ddl">
                 
