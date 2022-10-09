@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import Calendar from 'react-calendar';
 
 function UserHome(props) {    
@@ -8,6 +9,7 @@ function UserHome(props) {
     console.log('userdata: ', userData);
     console.log('props', props);
     const [value, onChange] = useState(new Date());
+   
 
     return (
         <div>
@@ -22,20 +24,6 @@ function UserHome(props) {
                     value={value} 
                 />
                 <br />
-            </div>
-                <div className="ddl">
-                    
-                        <h2>Schedule a new session</h2>
-                        <form>
-                            <select>
-                                <option value="Calculus">Calculus</option>
-                                <option value="american_history">American History</option>
-                                <option value="organic_chemistry">Organic Chemistry</option>
-                                <option value="data_structures">Data Structures</option>
-                            </select>
-                        <button >Find tutors</button>
-                        </form>
-        
             </div>
         </div>
     )
