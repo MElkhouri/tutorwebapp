@@ -3,19 +3,19 @@ import React, { useState } from 'react'
 // import {useEffect} from 'react';
 
 
-function Home() {
+function Contact() {
 
 
   
     return (
     <div>
-       <h1>Razor Tutor</h1>
-       <h2>Private tutoring at no out-of-pocket costs to students!</h2>
+       <h1>845-608-6199</h1>
+       <h2>Harrison@email.com</h2>
     </div>
-
+  
     )
 
 
 
 }
-export default Home
+export default Contact

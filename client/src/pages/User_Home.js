@@ -1,6 +1,10 @@
 import {useState} from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import Calendar from 'react-calendar';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+//import '../styles/Tutorhome.css'
+
 
 function UserHome(props) {    
     const location = useLocation();
@@ -8,34 +12,32 @@ function UserHome(props) {
     console.log('userdata: ', userData);
     console.log('props', props);
     const [value, onChange] = useState(new Date());
+    //const { collapseSidebar } = useProSidebar();
+
 
     return (
         <div>
-            <h1>Hi, {userData.user.first_name} see your upcoming sessions</h1>
-            <Calendar 
-                tileClassName={({ date, view }) => {if(date.getUTCDate() === 25){
-                    return 'highlight';
-                }}}
-                onChange={onChange} 
-                value={value} 
-            />
-            <br />
+            {/* <div className='sidebar'>                
+                    <Sidebar backgroundColor='rgb(45, 207, 12, 0.5)'>
+                        <Menu closeOnClick='true'>                       
+                            <MenuItem> My Profile </MenuItem>
+                            <MenuItem> Help </MenuItem>
+                        </Menu>                  
+                    </Sidebar>                                    
+                </div> */}
+            <div>
+                <h1>Hi, {userData.user.first_name} see your upcoming sessions</h1>
+                <h1>Your schedule for the week</h1>
+                <Calendar 
+                    tileClassName={({ date, view }) => {if(date.getUTCDate() === 25){
+                        return 'highlight';
+                    }}}
+                    onChange={onChange} 
+                    value={value} 
+                />
+                <br />
+            </div>
         </div>
-            // <div className="ddl">
-                
-            //         <h2>Schedule a new session</h2>
-            //         <form>
-            //             <select onChange={this.handleSelect}>
-            //                 <option value="Calculus">Calculus</option>
-            //                 <option value="american_history">American History</option>
-            //                 <option value="organic_chemistry">Organic Chemistry</option>
-            //                 <option value="data_structures">Data Structures</option>
-            //             </select>
-            //         <button onClick={this.onSubmit.bind(this)}>Find tutors</button>
-            //         </form>
-                
-		// </div>
-        
     )
     }
 

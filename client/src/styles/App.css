@@ -147,6 +147,13 @@ h1 {
   display: block;
   text-align: center;
 }
+h2 {
+  font-size: 20px;
+  color: #09110b;
+  margin-bottom: 25px;
+  display: block;
+  text-align: center;
+}
 
 
 .navbar {
@@ -228,6 +235,14 @@ h1 {
 
 .highlight { 
   color: blue
+}
+.sidebar {
+  margin-top: -38px;
+  height:109.5vh;
+  width: 100%;
+  flex: 0;
+  background-color: black;
+  color: black;
 }
 
 /* Calendar CSS */
