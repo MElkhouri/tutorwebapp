@@ -24,7 +24,10 @@
     flex: 10;
     padding-left: 100px;
 }
-
+.help{
+    font-size: '5px';
+    margin-left:"-10px";
+}
 .collapse {
     margin-top: -10px;  
 }
