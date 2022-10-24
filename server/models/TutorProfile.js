@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         courses: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        bio: {
+            type: DataTypes.STRING,
+            allowNull: false,
         }        
     });
     return TutorProfile
