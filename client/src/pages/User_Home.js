@@ -3,8 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
 import Calendar from 'react-calendar';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-//import '../styles/Tutorhome.css'
-
+import '../styles/Tutorhome.css'
 
 function UserHome(props) {    
     const location = useLocation();
@@ -13,7 +12,6 @@ function UserHome(props) {
     console.log('props', props);
     const [value, onChange] = useState(new Date());
     const { collapseSidebar } = useProSidebar();
-
 
     return (
         <div className='home_container'>
