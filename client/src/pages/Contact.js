@@ -9,8 +9,7 @@ function Contact() {
   
     return (
     <div>
-       <h1>845-608-6199</h1>
-       <h2>Harrison@email.com</h2>
+       <h2>To report an issue or to ask a question, please email support@razortutor.com. We will reply ASAP.</h2>
     </div>
   
     )
