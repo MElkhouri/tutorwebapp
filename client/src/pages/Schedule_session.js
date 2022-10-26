@@ -1,16 +1,22 @@
 import React from "react";
 import Calendar from 'react-calendar';
 import { Dropdown, Option } from "../components/Dropdown";
-
+import Sidebar from '../components/Sidebar'
+import '../styles/Sidebar.css';
+import {useState} from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
 class Schedule_session extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { course: "", date: ""};
+    this.state = { course: "", date: "", userData: ""};
+    //this.state.userData = this.props.location.state;
 
     this.handleSelect1 = this.handleSelect1.bind(this);
     this.handleSelect2 = this.handleSelect2.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    console.log('State: asdfawe',this.state)
   }
+  
 
   handleSelect1(event) {
     console.log(event);
