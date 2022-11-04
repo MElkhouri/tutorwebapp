@@ -1,4 +1,5 @@
 import './styles/App.css';
+import './styles/Sidebar.css';
 import {BrowserRouter as Router, Route, Routes as Switch, Link} from 'react-router-dom';
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -9,7 +10,7 @@ import Footer from './pages/footer';
 import Contact from './pages/Contact'
 import Schedule_session from './pages/Schedule_session';
 import { ProSidebarProvider } from 'react-pro-sidebar';
-
+import TutorProfile from './pages/TutorProfile';
 function App() {
   return (
     <div className="App">
@@ -22,18 +23,17 @@ function App() {
             <Link to ="/login">Login</Link>
             <Link to ="/">Logout</Link>
           </div>
-          <ProSidebarProvider>
-            <Switch>
-              <Route path="/" element={<Home/>} exact />
-              {/* <Route path="/" element={<Apply/>} exact /> */}
-              <Route path="/Contact" element={<Contact/>} exact />
-              <Route path="/Schedule_session" element={<Schedule_session/>} exact />
-              <Route path="/register" element={<Register/>} exact />
-              <Route path = "/login" element={<Login/>} exact />
-              <Route path = "/userhome" element={<UserHome />} exact />
-              <Route path = "/tutorhome" element={<TutorHome />} exact />
-            </Switch>
-          </ProSidebarProvider>          
+          <Switch>
+            <Route path="/" element={<Home/>} exact />
+            {/* <Route path="/" element={<Apply/>} exact /> */}
+            <Route path="/Contact" element={<Contact/>} exact />
+            <Route path="/Schedule_session" element={<Schedule_session/>} exact />
+            <Route path="/register" element={<Register/>} exact />
+            <Route path = "/login" element={<Login/>} exact />
+            <Route path = "/userhome" element={<UserHome />} exact />
+            <Route path = "/tutorhome" element={<TutorHome />} exact />
+            <Route path = "/tutor-profile" element={<TutorProfile />} exact />
+          </Switch>
         </Router>
         <Footer />
     </div>
