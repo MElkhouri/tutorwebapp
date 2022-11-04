@@ -8,6 +8,7 @@ import UserHome from "./pages/User_Home";
 import TutorHome from "./pages/Tutorhome";
 import Footer from './pages/footer';
 import Contact from './pages/Contact'
+import Apply from './pages/Apply'
 import Schedule_session from './pages/Schedule_session';
 import { ProSidebarProvider } from 'react-pro-sidebar';
 import TutorProfile from './pages/TutorProfile';
@@ -25,7 +26,7 @@ function App() {
           </div>
           <Switch>
             <Route path="/" element={<Home/>} exact />
-            {/* <Route path="/" element={<Apply/>} exact /> */}
+            <Route path="/apply" element={<Apply/>} exact />
             <Route path="/Contact" element={<Contact/>} exact />
             <Route path="/Schedule_session" element={<Schedule_session/>} exact />
             <Route path="/register" element={<Register/>} exact />
