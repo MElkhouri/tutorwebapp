@@ -33,7 +33,7 @@ body {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
-  font-family: 'Comfortaa', cursive;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 .login form {
@@ -57,7 +57,7 @@ body {
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
-  font-family: 'Comfortaa', cursive;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 .form input:focus {
@@ -172,12 +172,18 @@ h2 {
   text-decoration: none;
   color: white;
 }
-
+.logo {
+  width: 100px;
+  height: 55px;
+  margin-right: auto;  
+  margin-left: 10px;
+  /*the margin top pushes the logo down by 10 pixels*/
+}
 .leftSide {
   flex: 50%;
   height: calc(100vh - 70px);
   display: grid;
-  place-items: center;
+  place-items: center;  
 }
 
 .rightSide {

@@ -13,7 +13,7 @@ function UserHome(props) {
 
     return (
         <div className='home_container'>
-            <Sidebar userData = {userData} />
+            <Sidebar user = {userData} />
             <div className='home_body'>
                 <h1 className='title'>Hi, {userData.user.first_name} see your upcoming sessions</h1>
                 <Calendar className='calendar' tileClassName={({ date, view }) => {if(date.getUTCDate() === 25){ return 'highlight'; }}} onChange={onChange} value={value} />
