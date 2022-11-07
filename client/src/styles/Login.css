@@ -1,32 +1,11 @@
-.home_container{
-    height: 100vh;
-    width: 100vw;
-    background-color: lightgrey;
-    font-size: 16px;
-    display: flex
-}
-.home_body{
-    height: auto;
-    padding: 0;
-    width: 100%;
-    display: grid;
-}
-.home_body .title{
-    justify-content: center;
-}
-.calendar{
-    margin-top: -200px;
-    margin-left: 350px;
-    height: 500px;
-}
-.profile {
-    width: 760px;
+.login {
+    width: 360px;
     padding: 8% 0 0;
     margin: auto;
     font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   }
   
-  .profile form {
+  .login form {
     position: relative;
     z-index: 1;
     background: #FFFFFF;
