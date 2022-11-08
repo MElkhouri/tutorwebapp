@@ -8,10 +8,12 @@ import UserHome from "./pages/User_Home";
 import TutorHome from "./pages/Tutorhome";
 import Footer from './pages/footer';
 import Contact from './pages/Contact'
+import Apply from './pages/Apply'
 import Schedule_session from './pages/Schedule_session';
 import { ProSidebarProvider } from 'react-pro-sidebar';
 import TutorProfile from './pages/TutorProfile';
 import Logo from './assets/logo.jpg'
+import StudentProfile from './pages/StudentProfile';
 function App() {
   return (
     <div className="App">
@@ -28,7 +30,7 @@ function App() {
           </div>
           <Switch>
             <Route path="/" element={<Home/>} exact />
-            {/* <Route path="/" element={<Apply/>} exact /> */}
+            <Route path="/apply" element={<Apply/>} exact />
             <Route path="/Contact" element={<Contact/>} exact />
             <Route path="/Schedule_session" element={<Schedule_session/>} exact />
             <Route path="/register" element={<Register/>} exact />
@@ -36,6 +38,7 @@ function App() {
             <Route path = "/userhome" element={<UserHome />} exact />
             <Route path = "/tutorhome" element={<TutorHome />} exact />
             <Route path = "/tutor-profile" element={<TutorProfile />} exact />
+            <Route path = "/student-profile" element={<StudentProfile />} exact />
           </Switch>
         </Router>
         <Footer />
