@@ -12,6 +12,7 @@ import Schedule_session from './pages/Schedule_session';
 import { ProSidebarProvider } from 'react-pro-sidebar';
 import TutorProfile from './pages/TutorProfile';
 import Logo from './assets/logo.jpg'
+import StudentProfile from './pages/StudentProfile';
 function App() {
   return (
     <div className="App">
@@ -36,6 +37,7 @@ function App() {
             <Route path = "/userhome" element={<UserHome />} exact />
             <Route path = "/tutorhome" element={<TutorHome />} exact />
             <Route path = "/tutor-profile" element={<TutorProfile />} exact />
+            <Route path = "/student-profile" element={<StudentProfile />} exact />
           </Switch>
         </Router>
         <Footer />
