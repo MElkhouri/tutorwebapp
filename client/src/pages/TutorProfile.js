@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
-import Calendar from 'react-calendar';
+import Navbar from '../components/Navbar';
 import {Formik, Field, ErrorMessage, Form} from 'formik'
 import '../styles/Tutorhome.css'
 import '../styles/Sidebar.css';
@@ -20,6 +20,7 @@ function TutorProfile(props) {
     } 
     return (
         <div className='home_container'>
+            <Navbar state = {true}/>
             <Sidebar user = {userData.user}/>
             <div className='home_body'>
                 <Formik

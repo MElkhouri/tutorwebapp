@@ -5,6 +5,7 @@ import '../styles/Tutorhome.css'
 import '../styles/Sidebar.css';
 import Sidebar from '../components/Sidebar'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import Navbar from '../components/Navbar';
 
 function TutorHome(props) {    
     const location = useLocation();
@@ -14,7 +15,8 @@ function TutorHome(props) {
     //const { collapseSidebar } = useProSidebar();    
 
     return (
-        
+        <div>
+            <Navbar state = {true}/>
         <div className='home_container'>
             <Sidebar user = {state.user} />
             <div className='home_body'>
@@ -23,6 +25,7 @@ function TutorHome(props) {
             </div>
                 
 
+        </div>
         </div>
       
             // <div className="ddl">

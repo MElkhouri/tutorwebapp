@@ -7,6 +7,7 @@ import '../styles/Sidebar.css';
 // import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu} from 'react-pro-sidebar';
 import Sidebar from '../components/Sidebar'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import Navbar from '../components/Navbar';
 
 function StudentProfile(props) {    
     const location = useLocation();
@@ -19,7 +20,11 @@ function StudentProfile(props) {
         console.log("form data", data);
     } 
     return (
+        <div>
+        <Navbar state = {true}/>
+        
         <div className='home_container'>
+           
             <Sidebar user = {userData.user}/>
             <div className='home_body'>
                 <Formik
@@ -65,6 +70,7 @@ function StudentProfile(props) {
             </div>
                 
 
+        </div>
         </div>
       
                
