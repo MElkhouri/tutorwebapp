@@ -1,14 +1,15 @@
 import {useState} from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from '../components/Navbar';
+import Calendar from 'react-calendar';
 import {Formik, Field, ErrorMessage, Form} from 'formik'
 import '../styles/Tutorhome.css'
 import '../styles/Sidebar.css';
 // import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu} from 'react-pro-sidebar';
 import Sidebar from '../components/Sidebar'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import Navbar from '../components/Navbar';
 
-function TutorProfile(props) {    
+function StudentProfile(props) {    
     const location = useLocation();
     const [userData] = useState(location.state);
     console.log('userdata: ', userData);
@@ -19,8 +20,11 @@ function TutorProfile(props) {
         console.log("form data", data);
     } 
     return (
+        <div>
+        <Navbar state = {true}/>
+        
         <div className='home_container'>
-            <Navbar state = {true}/>
+           
             <Sidebar user = {userData.user}/>
             <div className='home_body'>
                 <Formik
@@ -67,9 +71,10 @@ function TutorProfile(props) {
                 
 
         </div>
+        </div>
       
                
     )
 }
 
-export default TutorProfile;
+export default StudentProfile;

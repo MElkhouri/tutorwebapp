@@ -3,29 +3,29 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Calendar from 'react-calendar';
 import '../styles/Tutorhome.css'
 import '../styles/Sidebar.css';
-// import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu} from 'react-pro-sidebar';
 import Sidebar from '../components/Sidebar'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import Navbar from '../components/Navbar';
 
 function TutorHome(props) {    
     const location = useLocation();
-    const [userData] = useState(location.state);
-    console.log('Tutor userdata: ', userData);
-    console.log('props', props);
+    const [state] = useState(location.state);
+    console.log('Tutor userdata: ', state.user);    
     const [value, onChange] = useState(new Date());
-    //const { collapseSidebar } = useProSidebar();
-
+    //const { collapseSidebar } = useProSidebar();    
 
     return (
-        
+        <div>
+            <Navbar state = {true}/>
         <div className='home_container'>
-            <Sidebar userData = {userData} />
+            <Sidebar user = {state.user} />
             <div className='home_body'>
-                <h1 className='title'>Hi, {userData.user.first_name} see your upcoming sessions</h1>
+                <h1 className='title'>Hi, {state.user.first_name} see your upcoming sessions</h1>
                 <Calendar className='calendar' tileClassName={({ date, view }) => {if(date.getUTCDate() === 25){ return 'highlight'; }}} onChange={onChange} value={value} />
             </div>
                 
 
+        </div>
         </div>
       
             // <div className="ddl">

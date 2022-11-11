@@ -10,20 +10,25 @@ import Footer from './pages/footer';
 import Contact from './pages/Contact'
 import Apply from './pages/Apply'
 import Schedule_session from './pages/Schedule_session';
-import { ProSidebarProvider } from 'react-pro-sidebar';
 import TutorProfile from './pages/TutorProfile';
+import StudentProfile from './pages/StudentProfile';
+
 function App() {
+
   return (
-    <div className="App">
+    <div>
         <Router> 
-          <div className='navbar'>
-            <Link to="/">Home</Link>
-            <Link to ="/apply">Apply to be a tutor!</Link>
-            <Link to="/register">Register an Account</Link>
-            {/* <Link to = "/schedule_session">Schedule Session</Link> */}
-            <Link to ="/login">Login</Link>
-            <Link to ="/">Logout</Link>
-          </div>
+          {/*<Navbar state = {false} />
+           <div className='navbar'>
+              <img className="logo" src={Logo} height={50} width={100} />            
+              <Link to="/">Home</Link>
+              <Link to ="/apply">Apply to be a tutor!</Link>
+              <Link to="/register">Register an Account</Link>
+             
+              <Link to ="/login">Login</Link>
+              <Link to ="/">Logout</Link>
+            
+          </div> */}
           <Switch>
             <Route path="/" element={<Home/>} exact />
             <Route path="/apply" element={<Apply/>} exact />
@@ -34,6 +39,7 @@ function App() {
             <Route path = "/userhome" element={<UserHome />} exact />
             <Route path = "/tutorhome" element={<TutorHome />} exact />
             <Route path = "/tutor-profile" element={<TutorProfile />} exact />
+            <Route path = "/student-profile" element={<StudentProfile />} exact />
           </Switch>
         </Router>
         <Footer />
