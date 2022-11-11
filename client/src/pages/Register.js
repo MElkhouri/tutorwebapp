@@ -3,6 +3,7 @@ import axios from "axios";
 import {Formik, Field, ErrorMessage, Form} from 'formik'
 import * as Yup from "yup";
 import {useNavigate} from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 
 
@@ -50,7 +51,9 @@ function Register() {
     };
 
     return (
+      
     <div className="registerUser"> 
+    <Navbar state = {false}/>
      <Formik
        initialValues={initialValues}
        onSubmit={onSubmit}

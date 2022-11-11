@@ -1,6 +1,7 @@
 import React, {useRef, useState} from "react";
 import emailjs from 'emailjs-com'
 import { Navigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 
 
@@ -45,6 +46,8 @@ function Apply() {
   }
 
   return (
+    <div>
+    <Navbar state = {false}/>
     <div className="login form">
     <span>Become a tutor</span>
     <h3>If you're interested in being a tutor, please fill out the information below and attach your most recent resume. You will be sent an email within 48 hours containing the next steps. Pay starts at $18/hr and varies by experience.</h3>
@@ -60,6 +63,8 @@ function Apply() {
       <button type="submit">Apply</button>
     </form>
     </div>
+    </div>
+
   );
 
 
