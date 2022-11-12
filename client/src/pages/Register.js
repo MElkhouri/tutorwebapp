@@ -3,7 +3,7 @@ import axios from "axios";
 import {Formik, Field, ErrorMessage, Form} from 'formik'
 import * as Yup from "yup";
 import {useNavigate} from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Navbar from '../components/Navbar';
 
 
 
@@ -38,10 +38,13 @@ function Register() {
 
         
       });
-    const initialValues={ email: "", password: "", address: "", school: "", role: "1", first_name: "", last_name: "" } //have to add a way to input role in future for teachers "2" and make it a button, also make school a DDL
+    const initialValues={ email: "", password: "", address: "", school: "", role: "1", first_name: "", last_name: "",type: "student" } //have to add a way to input role in future for teachers "2" and make it a button, also make school a DDL
     const onSubmit= (data) => {
-     //console.log(data.body);
+      console.log(data);
       // getting error sending "data" over probably because  
+      if(data.type[0] == "tutor"){
+        data.role="2";
+      }
       axios.post("http://localhost:3001/users", data).then((response) => {
         console.log("user created and posted" && response);
 
@@ -51,70 +54,79 @@ function Register() {
     };
 
     return (
+      <div>
+        <Navbar state = {true}/>
       
-    <div className="registerUser"> 
-    <Navbar state = {false}/>
-     <Formik
-       initialValues={initialValues}
-       onSubmit={onSubmit}
-       validationSchema = {validationSchema}
-      >
-      <Form className="login form">
-          
-               <span>Register</span>
-                <ErrorMessage name = "first name" component="error" />
-                <Field
-                    id= "first_name"
-                    name="first_name"
-                    placeholder="Enter your first name"
-                    className="form-control inp_text"
-                  />
-                <ErrorMessage name = "last name" component="error" />
-                <Field
-                    id= "last_name"
-                    name="last_name"
-                    placeholder="Enter your last name"
-                    className="form-control inp_text"
-                  />
-                <ErrorMessage name = "email" component="error" /> 
-                <Field
-                  name="email"
-                  placeholder="Enter email"
-                  className="form-control inp_text"
-                  id="email"
-                />
-                <ErrorMessage name = "school" component="error" />
-                <Field
-                  id = "school"
-                  name="school"
-                  placeholder="Enter your current school"
-                  className="form-control inp_text"
-                />
-                
-                 {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
-                <ErrorMessage name = "password" component="error" />
-                <Field
-                  type="password"
-                  name="password"
-                  placeholder="Enter password"
-                  className="form-control"
-                />
-                <ErrorMessage name = "confirm_password" component="error" />
-                <Field
-                  type="password"
-                  name="confirm_password"
-                  placeholder="Confirm password"
-                  className="form-control"
-                />
-                
-                {/* Click on submit button to submit the form */}
-                <button type="submit">Register</button>
-              </Form>
-      </Formik>
-      <br />
-      <br />
+        <div className="registerUser"> 
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema = {validationSchema}
+          >
+          <Form className="login form">
+              
+                  <span>Register</span>
+                    <ErrorMessage name = "first name" component="error" />
+                    <Field
+                        id= "first_name"
+                        name="first_name"
+                        placeholder="Enter your first name"
+                        className="form-control inp_text"
+                      />
+                    <ErrorMessage name = "last name" component="error" />
+                    <Field
+                        id= "last_name"
+                        name="last_name"
+                        placeholder="Enter your last name"
+                        className="form-control inp_text"
+                      />
+                    <ErrorMessage name = "email" component="error" /> 
+                    <Field
+                      name="email"
+                      placeholder="Enter email"
+                      className="form-control inp_text"
+                      id="email"
+                    />
+                    <ErrorMessage name = "school" component="error" />
+                    <Field
+                      id = "school"
+                      name="school"
+                      placeholder="Enter your current school"
+                      className="form-control inp_text"
+                    />
+                    
+                    {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
+                    <ErrorMessage name = "password" component="error" />
+                    <Field
+                      type="password"
+                      name="password"
+                      placeholder="Enter password"
+                      className="form-control"
+                    />
+                    <ErrorMessage name = "confirm_password" component="error" />
+                    <Field
+                      type="password"
+                      name="confirm_password"
+                      placeholder="Confirm password"
+                      className="form-control"
+                    />
+                    <table role="group" aria-labelledby="my-radio-group">
+                      <tr>
+                        <td>
+                          <Field type="checkbox" name="type" value="tutor" />
+                          Tutor
+                        </td>                                              
+                      </tr>                                        
+                    </table>                    
+                    {/* Click on submit button to submit the form */}
+                    <button type="submit">Register</button>
+                  </Form>
+          </Formik>
+          <br />
+          <br />
 
-        </div>
+          </div>
+      </div>
     )
 
 
