@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         bio: {
             type: DataTypes.STRING,
             allowNull: true,
-        }        
+        }     
     });
     return TutorProfiles
 }
