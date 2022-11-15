@@ -51,94 +51,98 @@ font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 .form input:focus {
-background: #dbdbdb;
+  background: #dbdbdb;
 }
 
 .form button {
-font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-text-transform: uppercase;
-outline: 0;
-background: #4b6cb7;
-width: 100%;
-border: 0;
-border-radius: 5px;
-padding: 15px;
-color: #FFFFFF;
-font-size: 14px;
--webkit-transition: all 0.3 ease;
-transition: all 0.3 ease;
-cursor: pointer;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4b6cb7;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
 }
 
 .form button:active {
-background: #395591;
+  background: #395591;
 }
 
 .form span {
-font-size: 40px;
-color: #4b6cb7;
-margin-bottom: 25px;
-display: block;
-text-align: center;
+  font-size: 40px;
+  color: #4b6cb7;
+  margin-bottom: 25px;
+  display: block;
+  text-align: center;
 }
 
 .form error {
-margin: 0 0 10px 10px;
-text-align: left;
-font-size: 10px;
-color: red;
+  margin: 0 0 10px 10px;
+  text-align: left;
+  font-size: 10px;
+  color: red;
 }
 
 
 .formContainer {
-display: flex;
-flex-direction: column;
-justify-content: center;
-width: 500px;
-height: auto;
-padding: 20px;
-border: 5px solid dodgerblue;
-border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  border: 5px solid dodgerblue;
+  border-radius: 5px;
 }
 
 
 
 .formContainer input {
-outline: 0;
-background: #f2f2f2;
-width: 100%;
-border: 0;
-border-radius: 5px;
-margin: 0 0 15px;
-padding: 15px;
-box-sizing: border-box;
-font-size: 14px;
-font-family: 'Comfortaa', cursive;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: 'Comfortaa', cursive;
 }
 
 .formContainer button {
-margin-top: 15px;
-height: 40px;
-border: none;
-background-color: lightskyblue;
-border-radius: 5px;
-color: white;
+  margin-top: 15px;
+  height: 40px;
+  border: none;
+  background-color: lightskyblue;
+  border-radius: 5px;
+  color: white;
 }
 
 .formContainer button:hover {
-cursor: pointer;
-background-color: dodgerblue;
+  cursor: pointer;
+  background-color: dodgerblue;
 }
 .course-list {
-display: flex;
-padding: 10px;
+  display: flex;
+  padding: 10px;
 }
 
 .course-list table {
-padding-left: 70px;
+  padding-left: 70px;
 }
 
 .check {
-padding-top: 15px;
-padding-left: 10px;
+  padding-top: 15px;
+  padding-left: 10px;
+}
+
+.course_select{
+  padding-left: 350px;  
 }

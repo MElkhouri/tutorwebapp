@@ -33,7 +33,29 @@ router.post("/", async (req, res) => {
    
  
 });
-
+router.post("/findTutors", async (req, res) => {
+    // console.log("creating new user...");
+    // const user = req.body;
+    console.log("At post: ", req.body);
+    const course = req.course;
+    console.log("COURSE: ", course);
+    connection.query('SELECT * FROM TutorProfiles as a where courses LIKE "%?%"', [course], function(error, results, fields) {
+        if (error) throw error;
+            // If the account exists
+            console.log("results: ", results);
+            if (results.length > 0) {
+                // Authenticate the user
+                //request.session.loggedin = true;
+                //request.session.username = username;
+                // Redirect to user home page
+                //response.redirect('/userHome'); 				
+                response.send('1');
+            } else {				
+                response.send('-1');
+            }			
+            response.end();
+    });
+});
 // router.post('/auth', function(request, response) {
 // 	// Capture the input fields
 //     //console.log(request.body);

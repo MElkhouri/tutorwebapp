@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql2');
 const {Users, TutorProfiles} = require("../models");
+const { Op } = require("sequelize");
+
 const connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
@@ -103,5 +105,26 @@ router.post("/", async (req, res) => {
 			 }			
 			 response.end();
 	 });
+ });
+ router.post("/findTutors", async (req, res) => {
+    // console.log("creating new user...");
+    // const user = req.body;
+    console.log("At post: ", req.body);
+	
+    let course = req.body.course;
+	console.log("COURSE: ", course);
+	const tutors = await TutorProfiles.findAll({
+		where: { 
+			courses: { 
+				[Op.like]: '%'+course+'%' 
+			}		
+		}
+	});
+	if(tutors.length > 0){
+		res.send(tutors)
+	}else{
+		res.send('No tutors found');
+	}
+	console.log("TUTORS: ", tutors);
  });
 module.exports = router;
