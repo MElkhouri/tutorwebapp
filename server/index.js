@@ -18,6 +18,9 @@ app.use("/schools", schoolsRouter);
 const tutorsRouter = require('./routes/Tutors');
 app.use("/tutors", tutorsRouter);
 
+const appointmentsRouter = require('./routes/Appointments');
+app.use("/appointments", appointmentsRouter);
+
 
 //database connection and shit
 db.sequelize.sync().then(() => {

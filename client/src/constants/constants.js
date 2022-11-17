@@ -1,0 +1,11 @@
+export const CoursesList = [ "Calculus 1",
+                "Calculus 2",
+                "Calculus 3",
+                "Geometry",
+                "Chemistry 1",
+                "Physics 1",
+                "Biology 1",
+                "Biology 2",
+                "Intro to Computer Science",
+                "Data Structures",
+                "CyberSecurity"];
