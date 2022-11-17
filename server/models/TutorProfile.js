@@ -1,3 +1,4 @@
+const Appointments = require("./Appointments");
 module.exports = (sequelize, DataTypes) => {
     const TutorProfiles = sequelize.define("TutorProfiles", {
         email: {
@@ -23,7 +24,12 @@ module.exports = (sequelize, DataTypes) => {
         bio: {
             type: DataTypes.STRING,
             allowNull: true,
-        }     
+        },            
     });
+    TutorProfiles.associate = (models) => {
+        TutorProfiles.hasMany(models.Appointments, {
+            foreignKey: 'tutor',
+        });
+    }
     return TutorProfiles
 }

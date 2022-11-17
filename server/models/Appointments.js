@@ -1,3 +1,5 @@
+const TutorProfile = require("./TutorProfile");
+
 module.exports = (sequelize, DataTypes) => {
     const Appointments = sequelize.define("Appointments", {
         tutor: {

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql2');
-const {Users, TutorProfiles} = require("../models");
+const {Users, TutorProfiles, Appointments} = require("../models");
 const { Op } = require("sequelize");
 
 const connection = mysql.createConnection({
@@ -112,12 +112,38 @@ router.post("/", async (req, res) => {
     console.log("At post: ", req.body);
 	
     let course = req.body.course;
-	console.log("COURSE: ", course);
+	let temp = new Date(req.body.date);
+    temp.setTime(temp.getTime() - new Date().getTimezoneOffset() * 60 * 1000);
+	let date = temp;
+	console.log("COURSE: ", course); 
+	console.log("DAte: ", date); 
+	// connection.query('SELECT * FROM TutorProfiles as t LEFT JOIN Appointments as a ON t.id = a.tutor WHERE t.courses LIKE "%?%" AND NOT a.date = STR_TO_DATE("?", "%Y-%m-%d %H:%i:%s");', [course, date], function(error, results, fields) {
+	// 	if (error) throw error;
+	// 		// If the account exists
+	// 		console.log("resss: ",results);
+	// 		if (results.length > 0) { 
+	// 			// Authenticate the user
+	// 			//request.session.loggedin = true;
+	// 			//request.session.username = username;
+	// 			// Redirect to user home page
+	// 			//response.redirect('/userHome'); 				
+	// 			res.send(results);
+	// 		} else {				
+	// 			res.send('-1');
+	// 		}			
+	// 		res.end();
+	// });
 	const tutors = await TutorProfiles.findAll({
 		where: { 
 			courses: { 
-				[Op.like]: '%'+course+'%' 
-			}		
+				[Op.like]: '%'+course+'%' }			
+		},
+		include: {
+			model: Appointments,
+			// where: {
+			// 	date: {[Op.ne]: date}
+			// },
+			// required: false
 		}
 	});
 	if(tutors.length > 0){
