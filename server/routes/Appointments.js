@@ -7,12 +7,18 @@ router.get("/", async (req, res) => { //
     res.json(listOfAppointments);
 });
 
-router.post("/", async (req, res) => {
+router.post("/createAppointment", async (req, res) => {
 
+    console.log("Request: ", req.body);
+    let temp = new Date(req.body.date);
+    temp.setTime(temp.getTime() - new Date().getTimezoneOffset() * 60 * 1000);
+	let date = temp;
     const[row, created] = await Appointments.findOrCreate({ //authenticates registration
-        where: {}, //user wont be able to create a bad appointment, tutor the same depending on future debate
-        defaults: {date: req.body.date, tutor: req.body.tutor, student: req.body.student, date: req.body.date},     });
+        where: {tutor: req.body.tutor, student: req.body.student}, //user wont be able to create a bad appointment, tutor the same depending on future debate
+        defaults: {date: date, tutor: req.body.tutor, student: req.body.student}
+    });
     if(created){
+        console.log("CREATED", row);
         res.send(row);
     }
     else{
