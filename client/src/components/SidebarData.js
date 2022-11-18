@@ -11,6 +11,11 @@ export const TutorSidebarData = [
         link: "/tutorhome"
     },
     {
+        title: "Incoming Tutor Requests",
+        icon: <AccountBoxIcon />,
+        link: "/tutor-requests"
+    },
+    {
         title: "My Profile",
         icon: <AccountBoxIcon />,
         link: "/tutor-profile"

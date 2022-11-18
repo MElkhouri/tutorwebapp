@@ -5,6 +5,10 @@ import * as Yup from "yup";
 import Navbar from "../components/Navbar"
 import {useNavigate} from "react-router-dom";
 import '../styles/Login.css'
+import UserHome from "./User_Home";
+import { useSlotProps } from "@mui/base";
+import {Redirect} from 'react-router-dom';
+
 function Login() {
     const navigate = useNavigate();
     const validationSchema = Yup.object().shape({
@@ -23,7 +27,6 @@ function Login() {
         }
         
         else if(response.data.role === "1"){ //have to pass role through the response from server to navigate correctly. for now userhome is okay
-          //console.log("success");
           navigate(
             '/userhome', 
             {state: { user: response.data }}
