@@ -173,10 +173,10 @@ h2 {
   color: white;
 }
 .logo {
-  width: 100px;
-  height: 55px;
+  width: 60px;
+  height: 60px;
   margin-right: auto;  
-  margin-left: 10px;
+  margin-left: 20px;
   /*the margin top pushes the logo down by 10 pixels*/
 }
 .leftSide {
