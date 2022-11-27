@@ -3,7 +3,7 @@ const TutorProfile = require("./TutorProfile");
 module.exports = (sequelize, DataTypes) => {
     const Appointments = sequelize.define("Appointments", {
         tutor: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         student: {
@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         description: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        isRequest: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
         }
     });
     return Appointments

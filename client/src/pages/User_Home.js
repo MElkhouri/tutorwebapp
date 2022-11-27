@@ -31,7 +31,15 @@ function UserHome(props){
     //const [upcomingAppointments, setAppointments] = useState(new Date())
     
     let upcomingAppointments = [];
-    
+    for(let i = 0; i < userData.user.Appointments.length; i++){
+        console.log("Date: ", userData.user.Appointments[i].date);
+        let temp = new Date(userData.user.Appointments[i].date);
+        temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);  
+        let currDate = moment(temp).format("YYYY-MM-DD");     
+        console.log("currDate: ", currDate);
+        upcomingAppointments.push(currDate)         
+    }   
+    console.log("asdeg",upcomingAppointments);
 
     const data = {
         student: userData.user.id,
@@ -41,29 +49,29 @@ function UserHome(props){
         return (
           <Calendar
           className='calendar' tileClassName={({ date, view }) => { 
-            console.log(moment(new Date(date)).format("YYYY-MM-DD"));
-            console.log("Upcoming:", upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD")).toString());
+            // console.log(moment(new Date(date)).format("YYYY-MM-DD"));
+            // console.log("Upcoming:", upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD")).toString());
             if(upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD").toString())){
                 return 'highlight';
             }
             }} onChange={onChange} value={value}
           />
         );
-      };
+    };
     console.log('user home data: ', data);
-    axios.post("http://localhost:3001/appointments/getUserAppointments", data).then((response) => {
-        console.log("data", response.data);
-        if(response.data === 'No appointments'){
-            alert("no upcoming appointments");
-        }else{            
-            for(let i = 0; i < response.data.length; i ++){
-                let currDate = moment(new Date(response.data[i].date)).format("YYYY-MM-DD");     
-                upcomingAppointments.push(currDate)         
-            }           
-        }
-        console.log("IP:", upcomingAppointments);
-    }).catch(console.log('catch'));     
-    console.log("IP2:", upcomingAppointments);
+    // axios.post("http://localhost:3001/appointments/getUserAppointments", data).then((response) => {
+    //     console.log("data", response.data);
+    //     if(response.data === 'No appointments'){
+    //         alert("no upcoming appointments");
+    //     }else{            
+    //         for(let i = 0; i < response.data.length; i ++){
+    //             let currDate = moment(new Date(response.data[i].date)).format("YYYY-MM-DD");     
+    //             upcomingAppointments.push(currDate)         
+    //         }           
+    //     }
+    //     console.log("IP:", upcomingAppointments);
+    // }).catch(console.log('catch'));     
+    // console.log("IP2:", upcomingAppointments);
     
     return (
         <div>
