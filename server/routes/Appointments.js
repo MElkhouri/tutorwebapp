@@ -28,7 +28,7 @@ router.post("/createAppointment", async (req, res) => {
 	let date = temp;
     const[row, created] = await Appointments.findOrCreate({ //authenticates registration
         where: {tutor: req.body.tutor, student: req.body.student, date:{[Op.eq]: date}}, //user wont be able to create a bad appointment, tutor the same depending on future debate
-        defaults: {date: date, tutor: req.body.tutor, student: req.body.student}
+        defaults: {date: date, tutor: req.body.tutor, student: req.body.student, isRequest: true}
     });
     if(created){
         console.log("CREATED", row);

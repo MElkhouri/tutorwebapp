@@ -21,22 +21,22 @@ function Login() {
     const onSubmit = (data) => {
       //console.log(data);  
       axios.post("http://localhost:3001/users/auth", data).then((response) => {
-        //console.log(response)
+        console.log(response.data[0])
         if(response.data === -1){
           alert("Incorrect login credentials please try again.")
         }
         
-        else if(response.data.role === "1"){ //have to pass role through the response from server to navigate correctly. for now userhome is okay
+        else if(response.data[0].role === "1"){ //have to pass role through the response from server to navigate correctly. for now userhome is okay
           navigate(
             '/userhome', 
-            {state: { user: response.data }}
+            {state: { user: response.data[0] }}
           )
         }
-        else if(response.data.role === "2"){ //have to pass role through the response from server to navigate correctly. for now userhome is okay
+        else if(response.data[0].role === "2"){ //have to pass role through the response from server to navigate correctly. for now userhome is okay
           //console.log("THIS IS TUTOR");
           navigate(
             '/tutorhome', 
-            {state: { user: response.data }}
+            {state: { user: response.data[0] }}
           )
         }
       }).catch(console.log('catch'));

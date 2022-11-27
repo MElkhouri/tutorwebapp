@@ -89,6 +89,11 @@ function Schedule_session(props) {
             alert("This Tutor is busy this day try another tutor or time.")
         }else{
             alert("Created appointment");            
+            userData.user.Appointments.push({
+              date: startDate,
+              tutor: tutor.id, 
+              student: userData.user.id, 
+            })
         }
     }).catch(console.log('catch'));     
   }

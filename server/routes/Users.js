@@ -37,45 +37,90 @@ router.post("/", async (req, res) => {
 	 }
  });
  
- router.post('/auth', function(request, response) {
+ router.post('/auth', async function(request, response) {
 	 // Capture the input fields
 	 //console.log(request.body);
 	 let email = request.body.email;
 	 let password = request.body.password;
 	 // Ensure the input fields exists and are not empty
 	 if (email && password) {
-		 // Execute SQL query that'll select the account from the database based on the specified username and password
-		 connection.query('SELECT * FROM TutorProfiles WHERE email = ? AND password = ? LIMIT 1', [email, password], function(error, results, fields) {
-			 // If there is an issue with the query, output the error
-			 //console.log(results);
-			 if (error) throw error;
-			 // If the account exists			
-			 if (results.length > 0) {				
-				 // Authenticate the user
-				 //request.session.loggedin = true;
-				 //request.session.username = username;
-				 // Redirect to user home page
-				 //response.redirect('/userHome'); 				
-				 results[0].role = "2";
-				 response.send(results[0]);
-			 } else {
-				 connection.query('SELECT * FROM Users WHERE email = ? AND password = ? LIMIT 1', [email, password], function(error, results2, fields) {
-					 // If there is an issue with the query, output the error
-					 //console.log(results);
-					 if (error) throw error;			
-					 if (results2.length > 0) {										
-						 response.send(results2[0]);
-					 } else {
-						 response.send('-1');
-					 }					
-					 response.end();
-				 });
-			 }						
-		 });
-	 } else {
-		 response.send('Please enter Username and Password!');
-		 response.end();
-	 }
+		const tutors = await TutorProfiles.findAll({
+			where: { 
+				[Op.and]: [
+					{email: email},
+					{password: password}
+				]					
+			},
+			include: {
+				model: Appointments,
+				// where: {
+				// 	date: {[Op.ne]: date}
+				// },
+				// required: false
+			}
+		});
+		if(tutors.length > 0){
+			console.log('tutors: ',tutors[0].dataValues)
+			tutors[0].dataValues.role = '2';
+			console.log('tutors after: ',tutors[0].dataValues)
+			response.send(tutors)
+		}else{
+			const user = await Users.findAll({
+				where: { 
+					[Op.and]: [
+						{email: email},
+						{password: password}
+					]					
+				},
+				include: {
+					model: Appointments,
+					// where: {
+					// 	date: {[Op.ne]: date}
+					// },
+					// required: false
+				}
+			});
+			if(user.length > 0){
+				console.log('users: ',user[0].dataValues)
+				user[0].dataValues.role = '1';
+				console.log('users after: ',user[0].dataValues)
+				response.send(user)
+			}else{
+				response.send('No users found');
+			}
+		}
+		// // Execute SQL query that'll select the account from the database based on the specified username and password
+		// connection.query('SELECT * FROM TutorProfiles WHERE email = ? AND password = ? LIMIT 1', [email, password], function(error, results, fields) {
+		// 	// If there is an issue with the query, output the error
+		// 	//console.log(results);
+		// 	if (error) throw error;
+		// 	// If the account exists			
+		// 	if (results.length > 0) {				
+		// 		// Authenticate the user
+		// 		//request.session.loggedin = true;
+		// 		//request.session.username = username;
+		// 		// Redirect to user home page
+		// 		//response.redirect('/userHome');
+		// 		results[0].role = "2";
+		// 		response.send(results[0]);
+		// 	} else {
+		// 		connection.query('SELECT * FROM Users WHERE email = ? AND password = ? LIMIT 1', [email, password], function(error, results2, fields) {
+		// 			// If there is an issue with the query, output the error
+		// 			//console.log(results);
+		// 			if (error) throw error;			
+		// 			if (results2.length > 0) {										
+		// 				response.send(results2[0]);
+		// 			} else {
+		// 				response.send('-1');
+		// 			}					
+		// 			response.end();
+		// 		});
+		// 	}						
+		// });
+	} else {
+		response.send('Please enter Username and Password!');
+		response.end();
+	}
  });
  router.put('/updateTutorProfile', function(request, response) {
 	 let first_name = request.body.first_name;
