@@ -29,9 +29,7 @@ router.post("/", async (req, res) => {
     }
     else{
         res.send("User already exists. Try another email or name")
-    }
-   
- 
+    }    
 });
 router.post("/findTutors", async (req, res) => {
     // console.log("creating new user...");
@@ -40,15 +38,10 @@ router.post("/findTutors", async (req, res) => {
     const course = req.course;
     console.log("COURSE: ", course);
     connection.query('SELECT * FROM TutorProfiles as a where courses LIKE "%?%"', [course], function(error, results, fields) {
-        if (error) throw error;
+        if (error) throw error; 
             // If the account exists
             console.log("results: ", results);
             if (results.length > 0) {
-                // Authenticate the user
-                //request.session.loggedin = true;
-                //request.session.username = username;
-                // Redirect to user home page
-                //response.redirect('/userHome'); 				
                 response.send('1');
             } else {				
                 response.send('-1');

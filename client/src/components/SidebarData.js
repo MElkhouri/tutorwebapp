@@ -38,6 +38,11 @@ export const StudentSidebarData = [
         link: "/Schedule_session"
     },
     {
+        title: "Tutoring Requests",
+        icon: <ScheduleIcon />,
+        link: "/tutoring-requests"
+    },
+    {
         title: "My Profile",
         icon: <AccountBoxIcon />,
         link: "/student-profile"

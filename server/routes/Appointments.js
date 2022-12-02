@@ -25,10 +25,10 @@ router.post("/createAppointment", async (req, res) => {
     console.log("Request: ", req.body);
     let temp = new Date(req.body.date);
     temp.setTime(temp.getTime());
-	let date = temp;
+	let date = temp; 
     const[row, created] = await Appointments.findOrCreate({ //authenticates registration
-        where: {tutor: req.body.tutor, student: req.body.student, date:{[Op.eq]: date}}, //user wont be able to create a bad appointment, tutor the same depending on future debate
-        defaults: {date: date, tutor: req.body.tutor, student: req.body.student}
+        where: {tutorID: req.body.tutorID, studentID: req.body.studentID, date:{[Op.eq]: date}}, //user wont be able to create a bad appointment, tutor the same depending on future debate
+        defaults: {date: date, tutorID: req.body.tutorID, studentID: req.body.studentID, tutorName: req.body.tutorName, studentName: req.body.studentName, course: req.body.course, isRequest: true}
     });
     if(created){
         console.log("CREATED", row);
@@ -38,7 +38,25 @@ router.post("/createAppointment", async (req, res) => {
         res.send("Appointment already exists. Try another")
     }
    
-});
+}); 
+router.post("/acceptAppointment", async (req, res) => {
+    
+    const response = await Appointments.update(
+        { isRequest: false},{ 
+            where: {id: req.body.apptID}           
+    });
+    return response;
+}); 
+router.delete("/deleteAppointment", async (req, res) => {
+
+    console.log("Request body: ", req.body);
+    const result = await Appointments.destroy({ 
+        where: {id: req.body.data}, 
+    });
+    console.log("delete result: ", result);
+    return result;
+   
+}); 
 
 
 module.exports = router;
