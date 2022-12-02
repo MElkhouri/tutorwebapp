@@ -8,6 +8,10 @@ import UserHome from "./pages/User_Home";
 import TutorHome from "./pages/Tutorhome";
 import Footer from './pages/footer';
 import Contact from './pages/Contact'
+import Apply from './pages/Apply'
+import About from './pages/About'
+import Trial from './pages/Trial'
+import Social from './pages/Social'
 import Schedule_session from './pages/Schedule_session';
 import TutorProfile from './pages/TutorProfile';
 import StudentProfile from './pages/StudentProfile';
@@ -30,7 +34,10 @@ function App() {
           </div> */}
           <Switch>
             <Route path="/" element={<Home/>} exact />
-            {/* <Route path="/" element={<Apply/>} exact /> */}
+            <Route path="/free-trial" element={<Trial/>} exact />
+            <Route path="/social" element={<Social/>} exact />
+            <Route path="/about" element={<About/>} exact />
+            <Route path="/apply" element={<Apply/>} exact />
             <Route path="/Contact" element={<Contact/>} exact />
             <Route path="/Schedule_session" element={<Schedule_session/>} exact />
             <Route path="/register" element={<Register/>} exact />

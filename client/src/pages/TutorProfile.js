@@ -16,7 +16,7 @@ function TutorProfile(props) {
     const MathCourses = ['Calculus 1', 'Calculus 2', 'Calculus 3', 'Geometry'];
     const ScienceCourses = ['Chemistry 1', 'Physics 1', 'Biology 1', 'Biology 2'];
     const ComputerCourses = ['Intro to Computer Science', 'Data Structures', 'CyberSecurity'];
-    let currentCourses = userData.user.courses != (undefined || "") ? userData.user.courses.split("/") : null;
+    let currentCourses = userData.user.courses !== (null || "") ? userData.user.courses.split("/") : null;
     console.log("current", currentCourses);
     const initialValues={ first_name: userData.user.first_name, 
                           last_name: userData.user.last_name, 
@@ -28,10 +28,10 @@ function TutorProfile(props) {
                           
     console.log("init", initialValues);
     const dataIsUnchanged = (data) => {
-        if(data.first_name == initialValues.first_name &&
-            data.last_name == initialValues.last_name &&
-            data.email == initialValues.email && 
-            data.tutorCourses == currentCourses){
+        if(data.first_name === initialValues.first_name &&
+            data.last_name === initialValues.last_name &&
+            data.email === initialValues.email && 
+            data.tutorCourses === currentCourses){
                 return true;
             }
             userData.user.first_name = data.first_name;
