@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql2');
-const {TutorProfile} = require("../models");
+const {TutorProfiles} = require("../models");
 const connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'ishan2001',
-	database : 'razortutordb'
+	password : 'localSQL',
+	database : 'webapp'
 });
 
 router.get("/", (req, res) => { //
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
    // console.log("creating new user...");
    // const user = req.body;
    console.log("At post: ", req.body);
-    const[row, created] = await TutorProfile.findOrCreate({ //authenticates registration
+    const[row, created] = await TutorProfiles.findOrCreate({ //authenticates registration
         where: {email: req.body.email }, //username must be different whenever a user registers
         defaults: {password: req.body.password, courses: req.body.courses, first_name: req.body.first_name, last_name: req.body.last_name, bio: req.body.bio}, //does not need to depend on password, address, or role for user creation
     });

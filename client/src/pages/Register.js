@@ -42,7 +42,7 @@ function Register() {
     const onSubmit= (data) => {
       console.log(data);
       // getting error sending "data" over probably because  
-      if(data.type[0] == "tutor"){
+      if(data.type[0] === "tutor"){
         data.role="2";
       }
       axios.post("http://localhost:3001/users", data).then((response) => {
@@ -55,7 +55,7 @@ function Register() {
 
     return (
       <div>
-        <Navbar state = {true}/>
+        <Navbar state = {false}/>
       
         <div className="registerUser"> 
         <Formik
