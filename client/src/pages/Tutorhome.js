@@ -6,22 +6,60 @@ import '../styles/Sidebar.css';
 import Sidebar from '../components/Sidebar'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import Navbar from '../components/Navbar';
+import moment from 'moment';
 
 function TutorHome(props) {    
     const location = useLocation();
-    const [state] = useState(location.state);
-    console.log('Tutor userdata: ', state.user);    
+    const [userData,setUserData] = useState(location.state);
+    console.log('Tutor userdata: ', userData.user);    
     const [value, onChange] = useState(new Date());
     //const { collapseSidebar } = useProSidebar();    
 
+    let upcomingAppointments = [];
+    let pendingAppointments = [];
+    for(let i = 0; i < userData.user.Appointments.length; i++){
+        console.log("Date: ", userData.user.Appointments[i].date);
+        let temp = new Date(userData.user.Appointments[i].date);
+        temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);  
+        let currDate = moment(temp).format("YYYY-MM-DD");     
+        console.log("currDate: ", currDate);
+
+        if(userData.user.Appointments[i].isRequest){            
+            pendingAppointments.push(currDate)         
+        }else{
+            upcomingAppointments.push(currDate)         
+        }
+    }   
+    console.log("asdeg",upcomingAppointments);
+
+    const data = {
+        student: userData.user.id,
+        date: new Date()
+    }
+    const CalendarComponent = ({ ...props }) => {
+        return (
+          <Calendar
+          className='calendar' tileClassName={({ date, view }) => { 
+            // console.log(moment(new Date(date)).format("YYYY-MM-DD"));
+            // console.log("Upcoming:", upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD")).toString());
+            if(upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD").toString())){
+                return 'highlight';
+            }
+            if(pendingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD").toString())){
+                return 'highlight2';
+            }
+            }} onChange={onChange} value={value}
+          />
+        );
+    };
     return (
         <div>
             <Navbar state = {true}/>
         <div className='home_container'>
-            <Sidebar user = {state.user} />
+            <Sidebar user = {userData.user} />
             <div className='home_body'>
-                <h1 className='title'>Hi, {state.user.first_name} see your upcoming sessions</h1>
-                <Calendar className='calendar' tileClassName={({ date, view }) => {if(date.getUTCDate() === 25){ return 'highlight'; }}} onChange={onChange} value={value} />
+                <h1 className='title'>Hi, {userData.user.first_name} see your upcoming sessions</h1>
+                <CalendarComponent name="calendar" />
             </div>
                 
 
