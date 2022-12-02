@@ -58,7 +58,7 @@ function Apply() {
       <input type="text" required name="last_name" placeholder="Last Name" />
      
       <input type="email" required name="user_email" placeholder="Enter your email address"/>
-      <input type="text" requierd name="phone" placeholder="Phone Number"/>
+      <input type="text" required name="phone" placeholder="Phone Number"/>
       <input type = "file" required value = {selectedFile} onChange = {handleFileInput}/>
       <button type="submit">Apply</button>
     </form>

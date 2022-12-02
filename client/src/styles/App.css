@@ -12,8 +12,8 @@
   --main-color: #1a8fff;
   --text-color: #777;
   --text-color-light: #ccc;
-  --border-color: #eee;
-  --bg-color: #f9f9f9;
+  --border-color: rgb(255, 255, 255);
+  --bg-color: #ffffff;
   --neutral-color: #fff;
 }
 
@@ -112,7 +112,6 @@ body {
 }
 
 
-
 .formContainer input {
   outline: 0;
   background: #f2f2f2;
@@ -142,17 +141,109 @@ body {
 
 h1 {
   font-size: 40px;
-  color: #4b6cb7;
+  font-family: 'sans-serif', cursive;
+  color: darkgreen;
   margin-bottom: 25px;
   display: block;
   text-align: center;
 }
 h2 {
   font-size: 20px;
+  font-family: 'sans-serif', cursive;
   color: #09110b;
   margin-bottom: 25px;
   display: block;
   text-align: center;
+}
+
+.right_side{
+  margin-left: 50%;
+  margin-top: -16.5%;
+
+}
+.right_side txt1{
+  font-size: 25px;
+  font-family: 'sans-serif', cursive;
+  color: #09110b;
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+}
+.right_side txt2{
+  font-family: 'sans-serif', cursive;
+  
+  font-size: 25px;
+  color: #09110b;
+  margin-bottom: 325px;
+  display: block;
+  text-align: center;
+}
+.about_column {
+  float: left;
+  width: 32.3%;
+  padding: 5.1px;
+  
+}
+
+/* Clearfix (clear floats) */
+.about_row {
+  content: "";
+  clear: both;
+  display: table;
+  width: auto;
+}
+
+
+.about_column txt1{
+  font-family: 'sans-serif', cursive;
+  width:fit-content;
+  font-size: 23.4px;
+  color: #09110b;
+  display: inline-block;
+  margin-left: -65px;
+}
+.about_column txt11{
+  font-family: 'sans-serif';
+  width:fit-content;
+  font-size: 20px;
+  color: #09110b;
+  display: block;
+  text-align: center;
+  
+}
+.about_column txt2{
+  font-family: 'sans-serif', cursive;
+  width:fit-content;
+  font-size: 23.4px;
+  color: #09110b;
+  display: inline-block;
+  margin-left: -45px;
+}
+.about_column txt21{
+  font-family: 'sans-serif';
+  width:fit-content;
+  font-size: 20px;
+  color: #09110b;
+  display: block;
+  text-align: center;
+  
+}
+.about_column txt3{
+  font-family: 'sans-serif', cursive;
+  width:fit-content;
+  font-size: 23.4px;
+  color: #09110b;
+  display: block;
+  
+}
+.about_column txt31{
+  font-family: 'sans-serif';
+  width:fit-content;
+  font-size: 20px;
+  color: #09110b;
+  display: block;
+  text-align: center;
+  
 }
 
 
@@ -164,7 +255,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  font-family: 'sans-serif';
+  font-family: 'sans-serif', cursive;
 }
 
 .navbar a {
@@ -178,6 +269,14 @@ h2 {
   margin-right: auto;  
   margin-left: 20px;
   /*the margin top pushes the logo down by 10 pixels*/
+}
+
+.home_img{
+  width: 50%;
+  height: 90%;
+  margin-top: 25px;
+  margin-right: auto;  
+  margin-left: 20px;
 }
 .leftSide {
   flex: 50%;
