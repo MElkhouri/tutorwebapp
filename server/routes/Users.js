@@ -64,14 +64,14 @@ router.post("/", async (req, res) => {
 			tutors[0].dataValues.role = '2';
 			console.log('tutors after: ',tutors[0].dataValues)
 			response.send(tutors)
-		}else{
+		}else{ 
 			const user = await Users.findAll({
 				where: { 
 					[Op.and]: [
-						{email: email},
+						{email: email}, 
 						{password: password}
 					]					
-				},
+				}, 
 				include: {
 					model: Appointments,
 					// where: {
@@ -86,7 +86,7 @@ router.post("/", async (req, res) => {
 				console.log('users after: ',user[0].dataValues)
 				response.send(user)
 			}else{
-				response.send('No users found');
+				response.send("-1");
 			}
 		}
 		// // Execute SQL query that'll select the account from the database based on the specified username and password

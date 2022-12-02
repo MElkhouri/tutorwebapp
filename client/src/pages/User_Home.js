@@ -31,13 +31,19 @@ function UserHome(props){
     //const [upcomingAppointments, setAppointments] = useState(new Date())
     
     let upcomingAppointments = [];
+    let pendingAppointments = [];
     for(let i = 0; i < userData.user.Appointments.length; i++){
         console.log("Date: ", userData.user.Appointments[i].date);
         let temp = new Date(userData.user.Appointments[i].date);
         temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);  
         let currDate = moment(temp).format("YYYY-MM-DD");     
         console.log("currDate: ", currDate);
-        upcomingAppointments.push(currDate)         
+
+        if(userData.user.Appointments[i].isRequest){            
+            pendingAppointments.push(currDate)         
+        }else{
+            upcomingAppointments.push(currDate)         
+        }
     }   
     console.log("asdeg",upcomingAppointments);
 
@@ -53,6 +59,9 @@ function UserHome(props){
             // console.log("Upcoming:", upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD")).toString());
             if(upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD").toString())){
                 return 'highlight';
+            }
+            if(pendingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD").toString())){
+                return 'highlight2';
             }
             }} onChange={onChange} value={value}
           />

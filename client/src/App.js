@@ -13,6 +13,7 @@ import Schedule_session from './pages/Schedule_session';
 import TutorProfile from './pages/TutorProfile';
 import StudentProfile from './pages/StudentProfile';
 import TutorRequests from './pages/TutorRequests';
+import UserTutorRequests from './pages/UserTutorRequests';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
             <Route path = "/tutor-profile" element={<TutorProfile />} exact />
             <Route path = "/tutor-requests" element={<TutorRequests />} exact />
             <Route path = "/student-profile" element={<StudentProfile />} exact />
+            <Route path = "/tutoring-requests" element={<UserTutorRequests />} exact />
           </Switch>
         </Router>
         <Footer />
