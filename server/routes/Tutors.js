@@ -5,8 +5,8 @@ const {TutorProfiles} = require("../models");
 const connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'ishan2001',
-	database : 'razortutordb'
+	password : 'localSQL',
+	database : 'webapp'
 });
 
 router.get("/", (req, res) => { //

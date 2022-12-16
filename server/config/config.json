@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "ishan2001",
-    "database": "razortutordb",
+    "password": "localSQL",
+    "database": "webapp",
     "host": "localhost",
     "dialect": "mysql" 
   },
