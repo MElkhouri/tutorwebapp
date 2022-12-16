@@ -1,6 +1,6 @@
 .App {
   /* width: 100vw; */
-  height: 100vh;
+  height: 200vh;
   background-color: lightgray;
   height: auto;
   display: flex;
@@ -343,6 +343,9 @@ h2 {
 }
 .highlight2 { 
   color: red
+}
+.highlight3 { 
+  color: green
 }
 .sidebar {
   margin-top: -38px;
