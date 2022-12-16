@@ -18,6 +18,7 @@ import Button from 'react-bootstrap/Button';
 
 import {Formik, Field, ErrorMessage, Form, useField, useFormikContext} from 'formik';
 import { Rating } from "@mui/material";
+import Footer from "./footer";
 
 
 function Schedule_session(props) {
@@ -252,8 +253,8 @@ function Schedule_session(props) {
           )}
         </div>
       </div>
+      
     </div>
-    
   );
 }
 

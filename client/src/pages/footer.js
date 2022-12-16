@@ -6,7 +6,7 @@ const Footer = () => {
   
 return (
 	<div className="box">
-	<img style={{ marginLeft: "25%", marginTop:"-50px"}} src={Logo} height={200} width={600} /> 
+	{/* <img style={{ marginLeft: "25%", marginTop:"-50px"}} src={Logo} height={200} width={600} />  */}
 	<h1 style={{ color: "green",
 				textAlign: "center",
         fontSize: "15px",

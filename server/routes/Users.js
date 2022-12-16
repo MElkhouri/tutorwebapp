@@ -7,11 +7,11 @@ const { Op } = require("sequelize");
 const connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'localSQL',
-	database : 'webapp'
+	password : 'ishan2001',
+	database : 'razortutordb'
 });
 
-router.get("/", (req, res) => { //
+router.get("/", (req, res) => {
     res.send("User info");
 });
 
@@ -38,8 +38,6 @@ router.post("/", async (req, res) => {
  });
  
  router.post('/auth', async function(request, response) {
-	 // Capture the input fields
-	 //console.log(request.body);
 	 let email = request.body.email;
 	 let password = request.body.password;
 	 // Ensure the input fields exists and are not empty
