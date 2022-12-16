@@ -45,18 +45,24 @@ router.post("/acceptAppointment", async (req, res) => {
         { isRequest: false},{ 
             where: {id: req.body.apptID}           
     });
-    return response;
+    res.send(""+response);
 }); 
 router.delete("/deleteAppointment", async (req, res) => {
 
-    console.log("Request body: ", req.body);
+    console.log("Request bodyasdafe: ", req.body);
+    const appointment = await Appointments.findAll({
+        where: {id: req.body.data}}
+    );
+    console.log("APPT: ", appointment);
+    // if(appointment){
+
+    // }
     const result = await Appointments.destroy({ 
         where: {id: req.body.data}, 
     });
     console.log("delete result: ", result);
-    return result;
+    res.send(""+result);
    
-}); 
-
+});
 
 module.exports = router;

@@ -26,26 +26,64 @@ function UserHome(props){
     let [userData] = useState(location.state);
     console.log('userdata: ', userData);
     console.log('props', props);
-
     const [value, onChange] = useState(new Date());
+    const [getNextAppt, setNextAppt] = useState(0);
+    const [upcomingAppointmentText, setUpcomingAppointmentText] = useState("No Upcoming Appointments");
     //const [upcomingAppointments, setAppointments] = useState(new Date())
     
     let upcomingAppointments = [];
-    let pendingAppointments = [];
+    let pendingAppointments = [];    
+    let dateToApptMap = new Map();
     for(let i = 0; i < userData.user.Appointments.length; i++){
         console.log("Date: ", userData.user.Appointments[i].date);
         let temp = new Date(userData.user.Appointments[i].date);
         temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);  
         let currDate = moment(temp).format("YYYY-MM-DD");     
-        console.log("currDate: ", currDate);
-
+        let mapDate = moment(temp).format("YYYY-MM-DD hh:mm A");     
         if(userData.user.Appointments[i].isRequest){            
             pendingAppointments.push(currDate)         
         }else{
+            if(mapDate > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
+                dateToApptMap.set(mapDate, userData.user.Appointments[i]);
+            } 
             upcomingAppointments.push(currDate)         
         }
     }   
-    console.log("asdeg",upcomingAppointments);
+    console.log("BEfore",upcomingAppointments);
+    if(upcomingAppointments.length > 0){
+        upcomingAppointments.sort(function (a, b) {
+            return Math.abs(Date.now() - new Date(b.toDate)) - Math.abs(Date.now() - new Date(a.toDate));
+        });
+    }
+    console.log("After",upcomingAppointments);
+    if(getNextAppt == 0){
+        console.log("ASDFEG")
+        console.log(dateToApptMap.size);
+        let min = moment(new Date(8640000000000000)).format("YYYY-MM-DD hh:mm A")
+        for (const appt of dateToApptMap.keys()) {  
+            let temp = new Date(dateToApptMap.get(appt).date);
+            temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
+            let currDate = moment(temp).format("YYYY-MM-DD hh:mm A")
+            console.log("curr", currDate);
+            if(currDate < min){
+                console.log("here");
+                min = currDate
+            }
+        }
+        if(min == moment(new Date()).format("YYYY-MM-DD hh:mm A")){
+            let info = dateToApptMap.get(min);
+            console.log("info", info);
+            let reformat = moment(min).format("MM-DD-YY hh:mm A")
+            setUpcomingAppointmentText("Appointment today " + info.tutorName + " for " + info.course + " at " + reformat)
+        }
+        if(min > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
+            let info = dateToApptMap.get(min);
+            console.log("info", info);
+            let reformat = moment(min).format("MM-DD-YY hh:mm A")
+            setUpcomingAppointmentText("Next appointment is at " + reformat + " with " + info.tutorName + " for " + info.course)
+        }
+        setNextAppt(1);
+    }
 
     const data = {
         student: userData.user.id,
@@ -57,11 +95,20 @@ function UserHome(props){
           className='calendar' tileClassName={({ date, view }) => { 
             // console.log(moment(new Date(date)).format("YYYY-MM-DD"));
             // console.log("Upcoming:", upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD")).toString());
-            if(upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD").toString())){
-                return 'highlight';
+            let today = moment(new Date()).format("YYYY-MM-DD").toString()
+            let current = moment(new Date(date)).format("YYYY-MM-DD").toString();
+            if(upcomingAppointments.includes(current)){
+                if(current < today){
+                    return 'highlight3'
+                }
+                else
+                    return 'highlight';
             }
-            if(pendingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD").toString())){
-                return 'highlight2';
+            if(pendingAppointments.includes(current)){
+                if(current < today)
+                    return 'highlight3'
+                else
+                    return 'highlight2';
             }
             }} onChange={onChange} value={value}
           />
@@ -92,7 +139,7 @@ function UserHome(props){
                 <CalendarComponent name="calendar" />
                 <br />
                 <br />
-                <h2>Upcoming session with Professor Elk on the 25th at 1:00 pm.</h2>
+                <h2>{upcomingAppointmentText}</h2>
                 
             </div>
             </div>

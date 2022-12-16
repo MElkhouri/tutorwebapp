@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import {Formik, Field, ErrorMessage, Form} from 'formik'
@@ -13,15 +13,11 @@ import moment from 'moment';
 function TutorRequests(props) {    
     const location = useLocation();
     const [userData, setUserData] = useState(location.state);
+    const [reRender, setReRender] = useState(false);
+
     console.log('userdata: ', userData);
     const tutorAppointments = userData.user.Appointments;
-
-    const acceptRequest = async (appointment) => {   
-        console.log("accept appt:", appointment); 
-        const data = {
-            apptID: appointment.id
-        }
-        axios.post("http://localhost:3001/appointments/acceptAppointment", data)
+    useEffect(() => {
         const data2 = {
             email: userData.user.email,
             password: userData.user.password
@@ -31,31 +27,35 @@ function TutorRequests(props) {
             if(response.data === -1){
                 alert("Incorrect login credentials please try again.")
             }
-            else{
+            else{                
                 setUserData({user: response.data[0]});
             }
-        });       
+        });
+        console.log("POST EFFECT:", userData);
+        setReRender(false)
+    }, [reRender])
+    const acceptRequest = async (appointment) => {   
+        console.log("accept appt:", appointment); 
+        const data = {
+            apptID: appointment.id
+        }
+        await axios.post("http://localhost:3001/appointments/acceptAppointment", data)
+        setReRender(true)
     }
     const rejectRequest = async (deleteAppt) => {   
         console.log("deletE: ",deleteAppt);
-        axios.delete("http://localhost:3001/appointments/deleteAppointment", {
+        await axios.delete("http://localhost:3001/appointments/deleteAppointment", {
             data: { data: deleteAppt.id },
-        })
+        }).then((response) => {
+            console.log("DELETE: ", response);
+        }).catch(error => {
+            console.error('There was an error!', error);
+        });
         const data = {
             email: userData.user.email,
             password: userData.user.password
         }
-        console.log("PRE: ",userData)
-        console.log("data: ",data)
-        axios.post("http://localhost:3001/users/auth", data).then((response) => {
-            if(response.data === -1){
-                alert("There was a problem")
-            }
-            else{
-                setUserData({user: response.data[0]});
-            }
-        });
-        console.log("Post: ",userData)
+        setReRender(true)
     }
     return(
         <div>

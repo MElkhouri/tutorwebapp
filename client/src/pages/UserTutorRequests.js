@@ -19,52 +19,42 @@ import {Formik, Field, ErrorMessage, Form, useField, useFormikContext} from 'for
 function UserTutorRequests(props) {
     const location = useLocation();
     const [userData, setUserData] = useState(location.state);
+    const [reRender, setReRender] = useState(false);
+
     const appointments = userData.user.Appointments;
     console.log("request: ",appointments);
 
-    // const useUserData = () => {
-    //     useEffect(() => {
-    //         let newUserData = getUserData(userData);
-    //         console.log("user: ", userData);
-    //         console.log("newUser: ", newUserData);
-    //         setUserData(newUserData)
-    //         console.log("user2: ", userData);
-    //     })
-    // }
+    useEffect(() => {
+        const data2 = {
+            email: userData.user.email,
+            password: userData.user.password
+        }
+        axios.post("http://localhost:3001/users/auth", data2).then((response) => {
+            console.log(response.data[0])
+            if(response.data === -1){
+                alert("Incorrect login credentials please try again.")
+            }
+            else{                
+                setUserData({user: response.data[0]});
+            }
+        });
+        console.log("POST EFFECT:", userData);
+        setReRender(false)
+    }, [reRender])
     const deleteRequest = async (deleteAppt) => {   
         console.log("deletE: ",deleteAppt);
-        axios.delete("http://localhost:3001/appointments/deleteAppointment", {
+        await axios.delete("http://localhost:3001/appointments/deleteAppointment", {
             data: { data: deleteAppt.id },
-        })
+        }).then((response) => {
+            console.log("DELETE: ", response);
+        }).catch(error => {
+            console.error('There was an error!', error);
+        });
         const data = {
             email: userData.user.email,
             password: userData.user.password
         }
-        console.log("PRE: ",userData)
-        console.log("data: ",data)
-        axios.post("http://localhost:3001/users/auth", data).then((response) => {
-            console.log("RESSSL", response.data[0])
-            if(response.data === -1){
-                alert("There was a problem")
-            }
-            else{
-                // for(let i = 0; i < appointments.length; i++){
-                //     console.log("appt: ",appointments[i]);
-                //     if(appointments[i].id == deleteAppt.id){
-                //         console.log("splice",appointments[i]);
-                //         appointments.splice(i,1);
-                //     }
-                // }
-                setUserData({user: response.data[0]});
-                
-            }
-        });
-        console.log("Post: ",userData)
-        // .then((response) => {
-        //     console.log(response);
-        //     console.log(appointments);
-        //     alert("Appointment Deleted");
-        // })
+        setReRender(true)
     }
     return (
         <div>
