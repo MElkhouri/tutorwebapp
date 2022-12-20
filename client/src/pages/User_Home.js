@@ -110,6 +110,9 @@ function UserHome(props){
                 else
                     return 'highlight2';
             }
+            // if(upcomingAppointments.includes(value)){
+
+            // }
             }} onChange={onChange} value={value}
           />
         );
