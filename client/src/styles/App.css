@@ -200,7 +200,7 @@ h2 {
   font-size: 23.4px;
   color: #09110b;
   display: inline-block;
-  margin-left: -65px;
+  margin-left: -10px;
 }
 .about_column txt11{
   font-family: 'sans-serif';
@@ -217,7 +217,7 @@ h2 {
   font-size: 23.4px;
   color: #09110b;
   display: inline-block;
-  margin-left: -45px;
+  margin-left: 10px;
 }
 .about_column txt21{
   font-family: 'sans-serif';
@@ -234,6 +234,7 @@ h2 {
   font-size: 23.4px;
   color: #09110b;
   display: block;
+  margin-left: 80px;
   
 }
 .about_column txt31{
