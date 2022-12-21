@@ -1,22 +1,29 @@
-import {useEffect, useState} from 'react';
-import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from '../components/Navbar';
-import {Formik, Field, ErrorMessage, Form} from 'formik'
-import axios from "axios";
+import React, { useEffect } from "react";
 import '../styles/Tutorhome.css'
-import '../styles/Sidebar.css';
-// import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu} from 'react-pro-sidebar';
+import { Dropdown, Option } from "../components/Dropdown";
 import Sidebar from '../components/Sidebar'
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import moment from 'moment';
+import '../styles/Sidebar.css';
+import {useState} from 'react';
+import { useLocation} from "react-router-dom";
+import DatePicker from "react-datepicker";
+import TutorTable from '../components/TutorTable';
+import "react-datepicker/dist/react-datepicker.css";
+import { CoursesList } from "../constants/constants";
+import Navbar from '../components/Navbar';
+import axios from "axios";
+import moment from 'moment'
+import getUserData from '../helperFunction/UserDataFunctions';
+import {Formik, Field, ErrorMessage, Form, useField, useFormikContext} from 'formik';
 
-function TutorRequests(props) {    
+
+function UserTutorRequests(props) {
     const location = useLocation();
     const [userData, setUserData] = useState(location.state);
     const [reRender, setReRender] = useState(false);
 
-    console.log('userdata: ', userData);
-    const tutorAppointments = userData.user.Appointments;
+    const appointments = userData.user.Appointments;
+    console.log("request: ",appointments);
+
     useEffect(() => {
         const data2 = {
             email: userData.user.email,
@@ -34,15 +41,7 @@ function TutorRequests(props) {
         console.log("POST EFFECT:", userData);
         setReRender(false)
     }, [reRender])
-    const acceptRequest = async (appointment) => {   
-        console.log("accept appt:", appointment); 
-        const data = {
-            apptID: appointment.id
-        }
-        await axios.post("http://localhost:3001/appointments/acceptAppointment", data)
-        setReRender(true)
-    }
-    const rejectRequest = async (deleteAppt) => {   
+    const deleteRequest = async (deleteAppt) => {   
         console.log("deletE: ",deleteAppt);
         await axios.delete("http://localhost:3001/appointments/deleteAppointment", {
             data: { data: deleteAppt.id },
@@ -57,48 +56,47 @@ function TutorRequests(props) {
         }
         setReRender(true)
     }
-    return(
+    return (
         <div>
-            <Navbar state={true} />
-        
-        <div className='home_container'>
-            <Sidebar user = {userData.user}/>
-
-            <div className='home_body'>
-                <h1>Incoming Tutoring Requests</h1>
+            <Navbar state = {true}/>
+            <div className="home_container">
+                <Sidebar user = {userData.user}/>
+                <div className='home_body'>
+                <h1>Current Requests</h1>   
                 <div>                
                     <table>
                     <tr>
-                    <th>Student Name</th>
+                    <th>Tutor Name</th>
                     <th>Date</th>
                     <th>Course</th>
+                    <th>Is Confirmed</th>
                     </tr>
-                    {tutorAppointments.map((val, key) => {
+                    {appointments.map((val, key) => {
                         let temp = new Date(val.date);
                         temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000)
                         if(val.isRequest){
                             return (
                                 <tr>
-                                    <td>{val.studentName}</td>
+                                    <td>{val.tutorName}</td>
                                     <td>{moment(new Date(temp)).format("YYYY-MM-DD hh:mm A").toString()}</td>
                                     <td>{val.course}</td>
+                                    <td>{!val.isRequest + ""}</td>
                                     <td>
-                                        <button onClick={() => acceptRequest(val)}>Accept Request</button>
-                                    </td>
-                                    <td>
-                                        <button onClick={() => rejectRequest(val)}>Reject Request</button>
+                                        <button onClick={() => deleteRequest(val)}>Cancel Request</button>
                                     </td>
                                 </tr>                    
-                            );
+                                );
                         }
                     })}
-                    </table>
+                </table>
                 </div>
+                    
+                </div>
+            
             </div>
-        </div>
-    </div>
-
-    )
+            
+        </div>        
+    );
 }
 
-export default TutorRequests;
+export default UserTutorRequests;

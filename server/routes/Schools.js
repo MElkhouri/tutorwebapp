@@ -18,7 +18,6 @@ router.post("/", async (req, res) => {
     else{
         res.send("School already exists. Try another")
     }
-   
 });
 
 

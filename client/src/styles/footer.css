@@ -1,9 +1,8 @@
 .box {
     padding: 80px;
-    padding-bottom: 33.5%;
+    bottom: 0px;
+    position: relative; 
     background: black;
-    position: relative;
-    width: 93.8%;
 }
 
 .container {

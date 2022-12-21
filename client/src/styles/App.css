@@ -1,6 +1,6 @@
 .App {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw; */
+  height: 200vh;
   background-color: lightgray;
   height: auto;
   display: flex;
@@ -20,6 +20,8 @@
 body {
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 1em;
+  display: flex;
+  justify-content: center;
   font-weight: 300;
   line-height: 1.5;
   color: var(--text-color);
@@ -200,12 +202,12 @@ h2 {
   font-size: 23.4px;
   color: #09110b;
   display: inline-block;
-  margin-left: -65px;
+  
 }
 .about_column txt11{
   font-family: 'sans-serif';
   width:fit-content;
-  font-size: 20px;
+  font-size: 18px;
   color: #09110b;
   display: block;
   text-align: center;
@@ -213,16 +215,16 @@ h2 {
 }
 .about_column txt2{
   font-family: 'sans-serif', cursive;
-  width:fit-content;
+  width:max-content;
   font-size: 23.4px;
   color: #09110b;
   display: inline-block;
-  margin-left: -45px;
+  margin-left: 25px;
 }
 .about_column txt21{
   font-family: 'sans-serif';
   width:fit-content;
-  font-size: 20px;
+  font-size: 18px;
   color: #09110b;
   display: block;
   text-align: center;
@@ -233,18 +235,22 @@ h2 {
   width:fit-content;
   font-size: 23.4px;
   color: #09110b;
-  display: block;
+  display: inline-block;
+  text-align: right;
+  margin-left: 82px;
   
 }
 .about_column txt31{
   font-family: 'sans-serif';
   width:fit-content;
-  font-size: 20px;
+  font-size: 18px;
   color: #09110b;
   display: block;
   text-align: center;
   
 }
+
+
 
 
 .navbar {
@@ -340,6 +346,12 @@ h2 {
 
 .highlight { 
   color: blue
+}
+.highlight2 { 
+  color: red
+}
+.highlight3 { 
+  color: green
 }
 .sidebar {
   margin-top: -38px;

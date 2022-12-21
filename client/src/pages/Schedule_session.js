@@ -11,18 +11,30 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CoursesList } from "../constants/constants";
 import Navbar from '../components/Navbar';
 import axios from "axios";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+//import 'bootstrap/dist/css/bootstrap.css';
+
 
 import {Formik, Field, ErrorMessage, Form, useField, useFormikContext} from 'formik';
+import { Rating } from "@mui/material";
+import Footer from "./footer";
 
 
 function Schedule_session(props) {
   const location = useLocation();
-  const [userData] = useState(location.state);
+  const [userData, setUserData] = useState(location.state);
   //console.log(userData);
   const [course, setCourse] = useState("");
   const [tutorID, setTutorID] = useState("");
   const [showTutors, setShowTutors] = useState(false);
   const [foundTutors, setFoundTutors] = useState({})
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const handleSelect = (e) => {
     //console.log(e);
    setCourse(e.target.value);
@@ -72,15 +84,18 @@ function Schedule_session(props) {
       return false;
   };
   const selectTutor = (tutor) => {    
-    console.log("selected: ", tutor);
+    console.log("selected: ", selectedCourse);
     console.log("Dataees: ", startDate);
     let date = new Date(startDate);
     date.setTime(date.getTime() - new Date().getTimezoneOffset() * 60 * 1000);  
     date = date.toISOString();
     let data = {
       date: date, 
-      tutor: tutor.id, 
-      student: userData.user.id, 
+      tutorID: tutor.id, 
+      studentID: userData.user.id, 
+      studentName: userData.user.first_name,
+      tutorName: tutor.first_name,
+      course: selectedCourse      
     }
     console.log("appt data: ",data);
     axios.post("http://localhost:3001/appointments/createAppointment", data).then((response) => {
@@ -88,16 +103,37 @@ function Schedule_session(props) {
         if(response.data === 'Appointment already exists. Try another'){
             alert("This Tutor is busy this day try another tutor or time.")
         }else{
-            alert("Created appointment");            
-            userData.user.Appointments.push({
-              date: startDate,
-              tutor: tutor.id, 
-              student: userData.user.id, 
-            })
+            alert("Created appointment");  
+            const data2 = {
+              email: userData.user.email,
+              password: userData.user.password
+            }
+            console.log("PRE: ",userData)
+            console.log("data: ",data2)
+            axios.post("http://localhost:3001/users/auth", data2).then((response) => {
+                console.log(response.data[0])
+                if(response.data === -1){
+                    alert("Incorrect login credentials please try again.")
+                }
+                else{
+                    setUserData({user: response.data[0]});
+                }
+            });
+            console.log("Post: ",userData)          
+            // userData.user.Appointments.push({
+            //   date: startDate,
+            //   tutor: tutor.id, 
+            //   student: userData.user.id, 
+            //   studentName: userData.user.first_name,
+            //   tutorName: tutor.first_name,
+            //   course: selectedCourse,
+            //   isRequest: true      
+            // })
         }
     }).catch(console.log('catch'));     
   }
   const onSubmit = (data) => {    
+    setSelectedCourse(data.course);
     let temp = new Date(data.date);
     temp.setTime(temp.getTime() - new Date().getTimezoneOffset() * 60 * 1000);
     let newDate = (temp.toISOString().split('T')[0] + " " + temp.toISOString().split('T')[1].split('.')[0]);
@@ -131,7 +167,26 @@ function Schedule_session(props) {
       <Navbar state = {true}/>
       <div className="home_container">
         <Sidebar user = {userData.user}/>
-        <div className='home_body'>                
+        <div className='home_body'>         
+
+        {/* <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button> */}
+
+      {/* <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
           <Formik
             initialValues={initialValues}
             onSubmit={onSubmit}
@@ -174,14 +229,17 @@ function Schedule_session(props) {
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Bio</th>
+                  <th>Rating</th>
                 </tr>
                 {foundTutors.map((val, key) => {
                   console.log("value: ", val);
+                  let rating = (val.rating == null) ? "No Rating": val.rating;
                   return (
                     <tr>
                       <td>{val.first_name}</td>
                       <td>{val.last_name}</td>
                       <td>{val.bio}</td>
+                      <td>{rating}</td>
                       <td>
                         <button onClick={() => selectTutor(val)}>Select Tutor</button>
                       </td>
@@ -195,8 +253,8 @@ function Schedule_session(props) {
           )}
         </div>
       </div>
+      
     </div>
-    
   );
 }
 

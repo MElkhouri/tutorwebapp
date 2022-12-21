@@ -24,12 +24,16 @@ module.exports = (sequelize, DataTypes) => {
         bio: {
             type: DataTypes.STRING,
             allowNull: true,
-        },            
+        },       
+        rating:{
+            type: DataTypes.DOUBLE,
+            allowNull: true,
+        }     
     });
     TutorProfiles.associate = (models) => {
         TutorProfiles.hasMany(models.Appointments, {
-            foreignKey: 'tutor',
-        });
+            foreignKey: 'tutorID',
+        }); 
     }
     
     return TutorProfiles

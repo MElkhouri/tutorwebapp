@@ -1,6 +1,6 @@
 .home_container{
   height: relative;
-  width: 100vw;
+  /* width: 100vw; */
   background-color: lightgrey;
   font-size: 16px;
   display: flex
