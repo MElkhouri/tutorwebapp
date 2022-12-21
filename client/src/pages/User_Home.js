@@ -56,34 +56,36 @@ function UserHome(props){
         });
     }
     console.log("After",upcomingAppointments);
-    if(getNextAppt == 0){
-        console.log("ASDFEG")
-        console.log(dateToApptMap.size);
-        let min = moment(new Date(8640000000000000)).format("YYYY-MM-DD hh:mm A")
-        for (const appt of dateToApptMap.keys()) {  
-            let temp = new Date(dateToApptMap.get(appt).date);
-            temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
-            let currDate = moment(temp).format("YYYY-MM-DD hh:mm A")
-            console.log("curr", currDate);
-            if(currDate < min){
-                console.log("here");
-                min = currDate
+    if(dateToApptMap.size > 0){
+        if(getNextAppt == 0){
+            console.log("ASDFEG")
+            console.log(dateToApptMap.size);
+            let min = moment(new Date(8640000000000000)).format("YYYY-MM-DD hh:mm A")
+            for (const appt of dateToApptMap.keys()) {  
+                let temp = new Date(dateToApptMap.get(appt).date);
+                temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
+                let currDate = moment(temp).format("YYYY-MM-DD hh:mm A")
+                console.log("curr", currDate);
+                if(currDate < min){
+                    console.log("here");
+                    min = currDate
+                }
             }
+            if(min == moment(new Date()).format("YYYY-MM-DD hh:mm A")){
+                let info = dateToApptMap.get(min);
+                console.log("info", info);
+                let reformat = moment(min).format("MM-DD-YY hh:mm A")
+                setUpcomingAppointmentText("Appointment today " + info.tutorName + " for " + info.course + " at " + reformat)
+            }
+            if(min > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
+                let info = dateToApptMap.get(min);
+                console.log("info", info);
+                let reformat = moment(min).format("MM-DD-YY hh:mm A")
+                setUpcomingAppointmentText("Next appointment is at " + reformat + " with " + info.tutorName + " for " + info.course)
+            }
+            setNextAppt(1);
         }
-        if(min == moment(new Date()).format("YYYY-MM-DD hh:mm A")){
-            let info = dateToApptMap.get(min);
-            console.log("info", info);
-            let reformat = moment(min).format("MM-DD-YY hh:mm A")
-            setUpcomingAppointmentText("Appointment today " + info.tutorName + " for " + info.course + " at " + reformat)
-        }
-        if(min > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
-            let info = dateToApptMap.get(min);
-            console.log("info", info);
-            let reformat = moment(min).format("MM-DD-YY hh:mm A")
-            setUpcomingAppointmentText("Next appointment is at " + reformat + " with " + info.tutorName + " for " + info.course)
-        }
-        setNextAppt(1);
-    }
+}
 
     const data = {
         student: userData.user.id,
