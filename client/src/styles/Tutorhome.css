@@ -138,6 +138,13 @@ font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   padding-left: 70px;
 }
 
+.righttxt {
+ 
+  font-size: 20px;
+  font-family: 'sans-serif', cursive;
+  color: #09110b;
+}
+
 .check {
   padding-top: 15px;
   padding-left: 10px;

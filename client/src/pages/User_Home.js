@@ -7,33 +7,62 @@ import  Navbar  from '../components/Navbar';
 import axios from "axios";
 import moment from 'moment'
 
-// class UserHome extends React.Component{
-//     constructor(props){
-//         super(props);
-//         console.log("PRIPS: ",props)
-//         this.state = {            
-//             value: new Date(),
-//             upcomingAppointments: []
-//         }
-//     }
-//     componentDidMount(){
-//         console.log("component state:", this.state);
-//     }
-// }
+
 function UserHome(props){    
     
     const location = useLocation();
     let [userData] = useState(location.state);
     console.log('userdata: ', userData);
     console.log('props', props);
-    const [value, onChange] = useState(new Date());
+    const value = useState(new Date());
     const [getNextAppt, setNextAppt] = useState(0);
     const [upcomingAppointmentText, setUpcomingAppointmentText] = useState("No Upcoming Appointments");
-    //const [upcomingAppointments, setAppointments] = useState(new Date())
+    const [selectedAppointmentText, setSelectedAppointmentText] = useState("");
+    const onChange = (props) => {
+     
+        let select = moment(new Date(props)).format("YYYY-MM-DD").toString();
+        if(upcomingAppointments.includes( select)){
+            console.log("Upcoming")
+            let obj = noTimeMap.get(select);
+            let appt = new Date(obj.date);
+            appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
+            let apptDateTime = moment(appt).format("YYYY-MM-DD hh:mm A")
+    
+            setSelectedAppointmentText("Selected date has an appointment for " + obj.course + " at " + apptDateTime + " with professor " + obj.tutorName);
+            
+        }
+        else if(pendingAppointments.includes(select)){
+            console.log("pending")
+            let obj = noTimeMap.get(select);
+            let appt = new Date(obj.date);
+            appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
+            let apptDateTime = moment(appt).format("YYYY-MM-DD hh:mm A")
+    
+
+            setSelectedAppointmentText("Pending appointment for " + obj.course + " at " + apptDateTime + " with professor " + obj.tutorName);
+        }
+        else if(previousAppointments.includes(select)){
+            console.log("previous");
+            let obj = noTimeMap.get(select);
+            let appt = new Date(obj.date);
+            appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
+            let apptDateTime = moment(appt).format("YYYY-MM-DD hh:mm A")
+    
+
+            setSelectedAppointmentText("Past appointment for " + obj.course + " at " + apptDateTime + " with professor " + obj.tutorName);
+        }
+        else{
+            console.log("else")
+            setSelectedAppointmentText("No appointments on selected date");
+        }
+    }
     
     let upcomingAppointments = [];
     let pendingAppointments = [];    
     let dateToApptMap = new Map();
+    let noTimeMap = new Map();
+    let previousAppointments = [];
+
     for(let i = 0; i < userData.user.Appointments.length; i++){
         console.log("Date: ", userData.user.Appointments[i].date);
         let temp = new Date(userData.user.Appointments[i].date);
@@ -45,8 +74,11 @@ function UserHome(props){
         }else{
             if(mapDate > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
                 dateToApptMap.set(mapDate, userData.user.Appointments[i]);
+                upcomingAppointments.push(currDate)         
+                
             } 
-            upcomingAppointments.push(currDate)         
+            noTimeMap.set(currDate, userData.user.Appointments[i]);
+            previousAppointments.push(currDate);         
         }
     }   
     console.log("BEfore",upcomingAppointments);
@@ -56,34 +88,36 @@ function UserHome(props){
         });
     }
     console.log("After",upcomingAppointments);
-    if(getNextAppt == 0){
-        console.log("ASDFEG")
-        console.log(dateToApptMap.size);
-        let min = moment(new Date(8640000000000000)).format("YYYY-MM-DD hh:mm A")
-        for (const appt of dateToApptMap.keys()) {  
-            let temp = new Date(dateToApptMap.get(appt).date);
-            temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
-            let currDate = moment(temp).format("YYYY-MM-DD hh:mm A")
-            console.log("curr", currDate);
-            if(currDate < min){
-                console.log("here");
-                min = currDate
+    if(dateToApptMap.size > 0){   
+        if(getNextAppt == 0){
+            console.log("ASDFEG")
+            console.log(dateToApptMap.size);
+            let min = moment(new Date(8640000000000000)).format("YYYY-MM-DD hh:mm A")
+            for (const appt of dateToApptMap.keys()) {  
+                let temp = new Date(dateToApptMap.get(appt).date);
+                temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
+                let currDate = moment(temp).format("YYYY-MM-DD hh:mm A")
+                console.log("curr", currDate);
+                if(currDate < min){
+                    console.log("here");
+                    min = currDate
+                }
             }
+            if(min == moment(new Date()).format("YYYY-MM-DD hh:mm A")){
+                let info = dateToApptMap.get(min);
+                console.log("info", info);
+                let reformat = moment(min).format("MM-DD-YY hh:mm A")
+                setUpcomingAppointmentText("Appointment today " + info.tutorName + " for " + info.course + " at " + reformat)
+            }
+            if(min > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
+                let info = dateToApptMap.get(min);
+                console.log("info", info);
+                let reformat = moment(min).format("MM-DD-YY hh:mm A")
+                setUpcomingAppointmentText("Next appointment is at " + reformat + " with " + info.tutorName + " for " + info.course)
+            }
+            setNextAppt(1);
         }
-        if(min == moment(new Date()).format("YYYY-MM-DD hh:mm A")){
-            let info = dateToApptMap.get(min);
-            console.log("info", info);
-            let reformat = moment(min).format("MM-DD-YY hh:mm A")
-            setUpcomingAppointmentText("Appointment today " + info.tutorName + " for " + info.course + " at " + reformat)
-        }
-        if(min > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
-            let info = dateToApptMap.get(min);
-            console.log("info", info);
-            let reformat = moment(min).format("MM-DD-YY hh:mm A")
-            setUpcomingAppointmentText("Next appointment is at " + reformat + " with " + info.tutorName + " for " + info.course)
-        }
-        setNextAppt(1);
-    }
+}
 
     const data = {
         student: userData.user.id,
@@ -109,6 +143,9 @@ function UserHome(props){
                     return 'highlight3'
                 else
                     return 'highlight2';
+            }
+            if(previousAppointments.includes(current)){
+                return 'highlight3';
             }
             }} onChange={onChange} value={value}
           />
@@ -139,6 +176,7 @@ function UserHome(props){
                 <CalendarComponent name="calendar" />
                 <br />
                 <br />
+                <p className='righttxt'>{selectedAppointmentText}</p>
                 <h2>{upcomingAppointmentText}</h2>
                 
             </div>
