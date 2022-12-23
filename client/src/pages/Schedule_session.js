@@ -234,7 +234,7 @@ function Schedule_session(props) {
           )}
         </div>
       </div>
-      
+      <Footer user = {userData} />
     </div>
   );
 }

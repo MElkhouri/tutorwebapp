@@ -8,6 +8,7 @@ import '../styles/Login.css'
 import UserHome from "./User_Home";
 import { useSlotProps } from "@mui/base";
 import {Redirect} from 'react-router-dom';
+import Footer from "./footer"
 
 function Login() {
     const navigate = useNavigate();
@@ -77,7 +78,7 @@ function Login() {
         </Form>
       </Formik>
     </div>
-    <Footer userData = {userData}/>
+    <Footer userData = {null}/>
 
     </div>
   )

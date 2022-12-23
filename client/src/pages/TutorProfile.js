@@ -8,6 +8,7 @@ import '../styles/Sidebar.css';
 // import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu} from 'react-pro-sidebar';
 import Sidebar from '../components/Sidebar'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import Footer from "./footer"
 
 function TutorProfile(props) {    
     const location = useLocation();

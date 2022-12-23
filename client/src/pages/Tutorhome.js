@@ -7,6 +7,7 @@ import Sidebar from '../components/Sidebar'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import Navbar from '../components/Navbar';
 import moment from 'moment';
+import Footer from "./footer"
 
 function TutorHome(props) {    
     const location = useLocation();

@@ -4,6 +4,7 @@ import {Formik, Field, ErrorMessage, Form} from 'formik'
 import * as Yup from "yup";
 import {useNavigate} from "react-router-dom";
 import Navbar from '../components/Navbar';
+import Footer from "./footer"
 
 
 
@@ -126,7 +127,7 @@ function Register() {
           <br />
 
           </div>
-          <Footer userData = {userData}/>
+          <Footer userData = {null}/>
 
       </div>
     )

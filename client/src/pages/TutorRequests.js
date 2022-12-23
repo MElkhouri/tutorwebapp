@@ -9,6 +9,7 @@ import '../styles/Sidebar.css';
 import Sidebar from '../components/Sidebar'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import moment from 'moment';
+import Footer from "./footer"
 
 function TutorRequests(props) {    
     const location = useLocation();

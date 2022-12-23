@@ -2,6 +2,7 @@ import React, {useRef, useState} from "react";
 import emailjs from 'emailjs-com'
 import { Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "./footer"
 
 
 
@@ -63,7 +64,7 @@ function Apply() {
       <button type="submit">Apply</button>
     </form>
     </div>
-    <Footer userData = {userData}/>
+    <Footer userData = {null}/>
 
     </div>
 
