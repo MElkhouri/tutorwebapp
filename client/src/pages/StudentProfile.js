@@ -8,6 +8,7 @@ import '../styles/Sidebar.css';
 import Sidebar from '../components/Sidebar'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import Navbar from '../components/Navbar';
+import Footer from './footer';
 
 function StudentProfile(props) {    
     const location = useLocation();
@@ -71,6 +72,7 @@ function StudentProfile(props) {
                 
 
         </div>
+        <Footer userData = {userData}/>
         </div>
       
                

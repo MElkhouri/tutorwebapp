@@ -12,6 +12,10 @@
   margin-bottom: 10px;
   display: grid;
 }
+.home_body h2{
+  margin-top: -10px;
+  margin-bottom: -50px;
+}
 .home_body .title{
   justify-content: center;
 }

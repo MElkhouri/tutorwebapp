@@ -170,6 +170,8 @@ function TutorHome(props) {
                 
 
         </div>
+        <Footer userData = {userData}/>
+
         </div>
       
             // <div className="ddl">

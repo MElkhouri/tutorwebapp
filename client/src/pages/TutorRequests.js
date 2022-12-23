@@ -96,6 +96,7 @@ function TutorRequests(props) {
                 </div>
             </div>
         </div>
+        <Footer userData = {userData}/>
     </div>
 
     )

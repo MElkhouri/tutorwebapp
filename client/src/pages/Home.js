@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import Logo from '../assets/logo.jpg'
 // import axios from "axios";
 // import {useEffect} from 'react';
-
+import Footer from './footer'
 
 function Home() {
 
@@ -21,7 +21,7 @@ function Home() {
             <txt1>Cutting Disparities</txt1>
             <txt2>Private Tutoring at no-out of pocket costs to students</txt2>
        </div>
-                 
+       <Footer userData = {null}/>
   </div>
 
     )

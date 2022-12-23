@@ -6,19 +6,19 @@ import '../styles/Login.css';
 import Sidebar from "../components/Sidebar"
 
 import Navbar from "../components/Navbar";
-
+import Footer from "./footer";
 
 function Contact() {
     const location = useLocation();
-    const [state] = useState(location.state);
-   
+    const [state] = useState(location.state);        
     let logged = false;
-    if(state !== null){
+    console.log('SATE:', state)
+    if(state.user !== null){
         logged = true;
     }
     
-   
- 
+    let userData = location.state.user;
+    let footerData = {user: location.state.user}
 
     const form = useRef();
   
@@ -44,26 +44,27 @@ if(logged){
         <div>
             <Navbar state = {logged}/>
         
-        <div className="home_container">
-            <Sidebar user = {state.user}/>
-            <div className="home_body">
-                <h2>To report an issue or to ask a question, please email support@razortutor.com. We will reply ASAP.</h2>
-            
-            <div className="login form">
-                <span>Contact Us</span>
-                <h2>Send us an email if you have any questions, comments, or concerns</h2>
-                <form ref={form} onSubmit={sendEmail}>
+            <div className="home_container">
+                <Sidebar user = {userData}/>
+                <div className="home_body">
+                    <h2>To report an issue or to ask a question, please email support@razortutor.com. We will reply ASAP.</h2>
                 
-                <input type="text" required name="name" placeholder="Name" />
-                
-                <input type="text" required name="Message" placeholder="Mesage" />
-                
-                <input type="email" required name="user_email" placeholder="Enter your email address"/>
-                <button type="submit">Send Message</button>
-            </form>
+                    <div className="login form">
+                        <span>Contact Us</span>
+                        <h2>Send us an email if you have any questions, comments, or concerns</h2>
+                        <form ref={form} onSubmit={sendEmail}>
+                        
+                            <input type="text" required name="name" placeholder="Name" />
+                            
+                            <input type="text" required name="Message" placeholder="Mesage" />
+                            
+                            <input type="email" required name="user_email" placeholder="Enter your email address"/>
+                            <button type="submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
+            <Footer userData = {footerData} />
         </div>
     );
     }
@@ -91,6 +92,7 @@ if(logged){
                 </div>
                 </div>
             </div>
+            <Footer userData = {null} />
             </div>
         );
     }

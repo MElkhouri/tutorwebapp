@@ -126,6 +126,8 @@ function Register() {
           <br />
 
           </div>
+          <Footer userData = {userData}/>
+
       </div>
     )
 

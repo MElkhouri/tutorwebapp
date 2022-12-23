@@ -77,6 +77,8 @@ function Login() {
         </Form>
       </Formik>
     </div>
+    <Footer userData = {userData}/>
+
     </div>
   )
 

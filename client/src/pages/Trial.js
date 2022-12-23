@@ -4,6 +4,8 @@ import React, { useRef,useState } from 'react';
 import emailjs from 'emailjs-com';
 import '../styles/Tutorhome.css';
 import '../styles/Login.css';
+import Sidebar from '../components/Sidebar';
+import Footer from './footer';
 // import axios from "axios";
 // import {useEffect} from 'react';
 
@@ -11,13 +13,14 @@ import '../styles/Login.css';
 function Trial() {
     const location = useLocation();
     const [state] = useState(location.state);
-
-    const [logged, setLogged] = useState(false);
-    console.log(state)
-    if(state !== null){
-        setLogged(true);
+    let logged = false;
+    
+    console.log(state.user)
+    if(state.user !== null){
+        logged = true;
     }
-
+    let sidebarData = location.state.user
+    let footerData = {user: location.state.user}
 
     const form = useRef();
   
@@ -34,12 +37,40 @@ function Trial() {
     };
   
 
-  
-    return (
-    <div>
- 
-            <Navbar state = {logged}/>
+    if(logged){
 
+        return (
+            <div>
+        
+                <Navbar state = {logged}/>
+                <div className="home_container">
+                    <Sidebar user={sidebarData} />
+                    <div className="home_body">
+                        <h1>Free Trial For Schools</h1>
+                        <h2>Fill out the information below to learn more about our free trial we offer to schools.</h2>
+                        <div className="login form">
+                            <form ref={form} onSubmit={sendEmail}>
+                            <input type="text" required name="contact_title" placeholder="Primary Contact and Title" />
+                            <input type="email" required name="user_email" placeholder="Enter your email address"/>
+                            <input type="text" name="phone" placeholder="Phone Number"/>
+                            <input type="text" required name="school" placeholder="School" />
+                            <input type="text" name="Message" placeholder="Anything else you want to say?" />
+                            
+                            <button type="submit">Send</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <Footer userData={footerData} />
+                
+        
+            </div>
+    
+        )
+    }
+    else {
+        <div>
+            <Navbar state = {logged}/>
         <div className="home_container">
             <div className="home_body">
                 <h1>Free Trial For Schools</h1>
@@ -57,11 +88,9 @@ function Trial() {
                 </div>
             </div>
         </div>
-        
-  
+            <Footer userData={null} />
     </div>
-
-    )
+    }
 
 
 

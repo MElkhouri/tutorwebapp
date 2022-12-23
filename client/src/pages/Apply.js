@@ -63,6 +63,8 @@ function Apply() {
       <button type="submit">Apply</button>
     </form>
     </div>
+    <Footer userData = {userData}/>
+
     </div>
 
   );

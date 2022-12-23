@@ -4,6 +4,7 @@ import Calendar from 'react-calendar';
 import Sidebar from '../components/Sidebar'
 import '../styles/Tutorhome.css'
 import  Navbar  from '../components/Navbar';
+import  Footer  from './footer';
 import axios from "axios";
 import moment from 'moment'
 
@@ -81,23 +82,19 @@ function UserHome(props){
             previousAppointments.push(currDate);         
         }
     }   
-    console.log("BEfore",upcomingAppointments);
     if(upcomingAppointments.length > 0){
         upcomingAppointments.sort(function (a, b) {
             return Math.abs(Date.now() - new Date(b.toDate)) - Math.abs(Date.now() - new Date(a.toDate));
         });
     }
-    console.log("After",upcomingAppointments);
     if(dateToApptMap.size > 0){   
         if(getNextAppt == 0){
-            console.log("ASDFEG")
             console.log(dateToApptMap.size);
             let min = moment(new Date(8640000000000000)).format("YYYY-MM-DD hh:mm A")
             for (const appt of dateToApptMap.keys()) {  
                 let temp = new Date(dateToApptMap.get(appt).date);
                 temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
                 let currDate = moment(temp).format("YYYY-MM-DD hh:mm A")
-                console.log("curr", currDate);
                 if(currDate < min){
                     console.log("here");
                     min = currDate
@@ -105,13 +102,11 @@ function UserHome(props){
             }
             if(min == moment(new Date()).format("YYYY-MM-DD hh:mm A")){
                 let info = dateToApptMap.get(min);
-                console.log("info", info);
                 let reformat = moment(min).format("MM-DD-YY hh:mm A")
                 setUpcomingAppointmentText("Appointment today " + info.tutorName + " for " + info.course + " at " + reformat)
             }
             if(min > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
                 let info = dateToApptMap.get(min);
-                console.log("info", info);
                 let reformat = moment(min).format("MM-DD-YY hh:mm A")
                 setUpcomingAppointmentText("Next appointment is at " + reformat + " with " + info.tutorName + " for " + info.course)
             }
@@ -184,6 +179,8 @@ function UserHome(props){
                 </div>
             </div>
             </div>
+            <Footer userData = {userData}/>
+
         </div>
         
     )

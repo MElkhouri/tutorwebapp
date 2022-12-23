@@ -50,9 +50,9 @@ function App() {
             <Route path = "/tutor-requests" element={<TutorRequests />} exact />
             <Route path = "/student-profile" element={<StudentProfile />} exact />
             <Route path = "/tutoring-requests" element={<UserTutorRequests />} exact />
+            <Route path = "/footer" element={<Footer />} exact />
           </Switch>
         </Router>
-        <Footer />
     </div>
   );
 }
