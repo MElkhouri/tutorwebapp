@@ -47,11 +47,9 @@ if(logged){
             <div className="home_container">
                 <Sidebar user = {userData}/>
                 <div className="home_body">
-                    <h2>To report an issue or to ask a question, please email support@razortutor.com. We will reply ASAP.</h2>
                 
                     <div className="login form">
                         <span>Contact Us</span>
-                        <h2>Send us an email if you have any questions, comments, or concerns</h2>
                         <form ref={form} onSubmit={sendEmail}>
                         
                             <input type="text" required name="name" placeholder="Name" />
@@ -62,6 +60,8 @@ if(logged){
                             <button type="submit">Send Message</button>
                         </form>
                     </div>
+                        <h2>To report an issue or to ask a question, please email support@razortutor.com. We will reply ASAP.</h2>
+                        <h2>Send us an email if you have any questions, comments, or concerns</h2>
                 </div>
             </div>
             <Footer userData = {footerData} />
@@ -75,11 +75,9 @@ if(logged){
             
             <div className="home_container">
                 <div className="home_body">
-                    <h2>To report an issue or to ask a question, please email support@razortutor.com. We will reply ASAP.</h2>
                 
                 <div className="login form">
                     <span>Contact Us</span>
-                    <h2>Send us an email if you have any questions, comments, or concerns</h2>
                     <form ref={form} onSubmit={sendEmail}>
                     
                     <input type="text" required name="name" placeholder="Name" />
@@ -90,6 +88,8 @@ if(logged){
                     <button type="submit">Send Message</button>
                 </form>
                 </div>
+                    <h2>To report an issue or to ask a question, please email support@razortutor.com. We will reply ASAP.</h2>
+                    <h2>Send us an email if you have any questions, comments, or concerns</h2>
                 </div>
             </div>
             <Footer userData = {null} />

@@ -20,9 +20,9 @@
   justify-content: center;
 }
 .calendar{
-  margin-top: 50px;
+  /* margin-top: 50px;
   margin-left: 350px;
-  height: 100%;
+  height: 100%; */
 }
 .profile {
   width: 760px;
@@ -142,21 +142,53 @@ font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 .course-list table {
   padding-left: 70px;
 }
+/*user home table */
 
+/* .user_column {
+  float: left;
+  width: 100%;
+}
+.user_row {
+  content: "";
+  clear: both;
+  display: table;
+  width: auto;
+}
 .righttxt {
-  margin-left: 60%;
+  padding-left: 40px;
   margin-top: -20%;
 
   font-size: 18px;
   font-family: 'sans-serif', cursive;
   color: #09110b;
+} */
+.body_container {
+  margin-top: -40px;
+  padding-left: 40px;
+  width:auto;
+  display: inline;
 }
-
+.select_text {
+  width: 30%;
+  float: left;
+  font-size: 18px;
+  font-family: 'sans-serif', cursive;
+  color: #09110b;
+  padding-left: 20px;
+}
 .check {
   padding-top: 15px;
   padding-left: 10px;
 }
-
+.calendar_style{
+  width: 40%;
+  float: left;
+  padding-left: 20px;
+}
+.calendar_style h2 {
+  padding-top: 30px;
+  font-size: 18px;
+}
 .course_select{
   padding-left: 350px;  
 }

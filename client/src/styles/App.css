@@ -13,7 +13,7 @@
   --text-color: #777;
   --text-color-light: #ccc;
   --border-color: rgb(255, 255, 255);
-  --bg-color: #ffffff;
+  --bg-color: lightgray;
   --neutral-color: #fff;  
 }
 
@@ -28,26 +28,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/*user home table */
-
-.user_column {
-  float: left;
-  width: 100%;
-  padding: 5.1px;
-  
-}
-
-
-.user_row {
-  content: "";
-  clear: both;
-  display: table;
-  width: auto;
-}
-
-
-
 
 .login {
   width: 360px;
