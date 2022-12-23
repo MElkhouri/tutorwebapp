@@ -139,8 +139,10 @@ font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 .righttxt {
- 
-  font-size: 20px;
+  margin-left: 60%;
+  margin-top: -20%;
+
+  font-size: 18px;
   font-family: 'sans-serif', cursive;
   color: #09110b;
 }

@@ -29,6 +29,26 @@ body {
   padding: 0;
 }
 
+/*user home table */
+
+.user_column {
+  float: left;
+  width: 100%;
+  padding: 5.1px;
+  
+}
+
+
+.user_row {
+  content: "";
+  clear: both;
+  display: table;
+  width: auto;
+}
+
+
+
+
 .login {
   width: 360px;
   padding: 8% 0 0;

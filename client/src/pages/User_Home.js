@@ -26,9 +26,9 @@ function UserHome(props){
             let obj = noTimeMap.get(select);
             let appt = new Date(obj.date);
             appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
-            let apptDateTime = moment(appt).format("YYYY-MM-DD hh:mm A")
+            let apptDateTime = moment(appt).format("MM-DD-YY hh:mm A")
     
-            setSelectedAppointmentText("Selected date has an appointment for " + obj.course + " at " + apptDateTime + " with professor " + obj.tutorName);
+            setSelectedAppointmentText("Scheduled session: " + obj.course + " at " + apptDateTime + " with tutor " + obj.tutorName);
             
         }
         else if(pendingAppointments.includes(select)){
@@ -36,24 +36,24 @@ function UserHome(props){
             let obj = noTimeMap.get(select);
             let appt = new Date(obj.date);
             appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
-            let apptDateTime = moment(appt).format("YYYY-MM-DD hh:mm A")
+            let apptDateTime = moment(appt).format("MM-DD-YY hh:mm A")
     
 
-            setSelectedAppointmentText("Pending appointment for " + obj.course + " at " + apptDateTime + " with professor " + obj.tutorName);
+            setSelectedAppointmentText("Pending appointment: " + obj.course + " at " + apptDateTime + " with tutor " + obj.tutorName);
         }
         else if(previousAppointments.includes(select)){
             console.log("previous");
             let obj = noTimeMap.get(select);
             let appt = new Date(obj.date);
             appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
-            let apptDateTime = moment(appt).format("YYYY-MM-DD hh:mm A")
+            let apptDateTime = moment(appt).format("MM-DD-YY hh:mm A")
     
 
-            setSelectedAppointmentText("Past appointment for " + obj.course + " at " + apptDateTime + " with professor " + obj.tutorName);
+            setSelectedAppointmentText("Past appointment: " + obj.course + " at " + apptDateTime + " with tutor " + obj.tutorName);
         }
         else{
             console.log("else")
-            setSelectedAppointmentText("No appointments on selected date");
+            setSelectedAppointmentText("No sessions on selected date");
         }
     }
     
@@ -173,12 +173,15 @@ function UserHome(props){
             <Sidebar user = {userData.user} />
             <div className='home_body'>
                 <h1 className='title'>Hi, {userData.user.first_name} see your upcoming sessions</h1>
-                <CalendarComponent name="calendar" />
-                <br />
-                <br />
-                <p className='righttxt'>{selectedAppointmentText}</p>
-                <h2>{upcomingAppointmentText}</h2>
-                
+                <div className='user_row'>
+                    <div className='user_column'>
+                        <CalendarComponent name="calendar" />
+                        <h2>{upcomingAppointmentText}</h2>
+                    </div>
+                    <div className='user_column'>
+                        <p className='righttxt'>{selectedAppointmentText}</p>
+                    </div>
+                </div>
             </div>
             </div>
         </div>
