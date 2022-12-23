@@ -30,10 +30,12 @@ function Trial() {
       emailjs.sendForm('service_qgy7z78', 'template_7z38wxd', form.current, 'PKWK63FQmkCdYEeqO')
         .then((result) => {
             console.log(result.text);
+            alert("Message sent!");
         }, (error) => {
             console.log(error.text);
+            alert("Error");
         });
-        alert("Message sent!");
+        form.current.reset();
     };
   
 

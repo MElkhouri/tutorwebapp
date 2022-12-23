@@ -33,6 +33,7 @@ function Contact() {
             console.log(error.text);
             alert(error.text);
         });
+        form.current.reset();
     };
   
     
