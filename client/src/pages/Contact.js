@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import React, { useRef,useState } from 'react';
 import emailjs from 'emailjs-com';
 import '../styles/Tutorhome.css';
+import '../styles/Login.css';
 import Sidebar from "../components/Sidebar"
 
 import Navbar from "../components/Navbar";
@@ -71,7 +72,7 @@ if(logged){
             <div>
                 <Navbar state = {logged}/>
             
-            <div className="">
+            <div className="home_container">
                 <div className="home_body">
                     <h2>To report an issue or to ask a question, please email support@razortutor.com. We will reply ASAP.</h2>
                 

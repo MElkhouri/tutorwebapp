@@ -14,7 +14,7 @@
   --text-color-light: #ccc;
   --border-color: rgb(255, 255, 255);
   --bg-color: #ffffff;
-  --neutral-color: #fff;
+  --neutral-color: #fff;  
 }
 
 body {
@@ -54,15 +54,16 @@ body {
   padding: 8% 0 0;
   margin: auto;
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  
 }
 
 .login form {
-  position: relative;
+  position: fixed;
   z-index: 1;
   background: #FFFFFF;
   border-radius: 10px;
   max-width: 360px;
-  margin: 0 auto 100px;
+  /* margin: 0 auto 100px; */
   padding: 45px;
   text-align: center;
 }
@@ -225,7 +226,7 @@ h2 {
 .about_column txt11{
   font-family: 'sans-serif';
   width:fit-content;
-  font-size: 20px;
+  font-size: 18px;
   color: #09110b;
   display: block;
   text-align: center;
@@ -233,7 +234,7 @@ h2 {
 }
 .about_column txt2{
   font-family: 'sans-serif', cursive;
-  width:fit-content;
+  width:max-content;
   font-size: 23.4px;
   color: #09110b;
   display: inline-block;
@@ -242,7 +243,7 @@ h2 {
 .about_column txt21{
   font-family: 'sans-serif';
   width:fit-content;
-  font-size: 20px;
+  font-size: 18px;
   color: #09110b;
   display: block;
   text-align: center;
@@ -260,12 +261,14 @@ h2 {
 .about_column txt31{
   font-family: 'sans-serif';
   width:fit-content;
-  font-size: 20px;
+  font-size: 18px;
   color: #09110b;
   display: block;
   text-align: center;
   
 }
+
+
 
 
 .navbar {

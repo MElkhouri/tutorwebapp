@@ -9,6 +9,7 @@
   height: 80vh;
   padding: 10px;
   width: 100%;
+  margin-bottom: 10px;
   display: grid;
 }
 .home_body .title{

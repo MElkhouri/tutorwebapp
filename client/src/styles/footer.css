@@ -1,7 +1,7 @@
 .box {
     padding: 80px;
     bottom: 0px;
-    position: relative; 
+    position: bottom; 
     background: black;
 }
 
@@ -11,7 +11,7 @@
 	justify-content: center;
 	max-width: 1000px;
     padding-left: 0px;    
-	margin: 0 auto;
+	margin: 0 auto;    
 	/* background: red; */
 }
 .column {
