@@ -44,11 +44,11 @@ function TutorHome(props) {
                     let apptDateTime = moment(appt).format("MM-DD-YY hh:mm A")
                     let text = "";      
                     if(apptDateTime <= currTime){
-                        text = ("Past appointment: " + currAppt.course + " at " + apptDateTime + " with tutor " + currAppt.tutorName);
+                        text = ("Past appointment: " + currAppt.course + " at " + apptDateTime + " with student " + currAppt.studentName);
                     }
                     else{
     
-                        text = ("Scheduled session: " + currAppt.course + " at " + apptDateTime + " with tutor " + currAppt.tutorName);
+                        text = ("Scheduled session: " + currAppt.course + " at " + apptDateTime + " with student " + currAppt.studentName);
                     }
                     apptIDtoText.set(currAppt.id, text)
                     
@@ -60,10 +60,10 @@ function TutorHome(props) {
                     let apptDateTime = moment(appt).format("MM-DD-YY hh:mm A")
                     let text = "";
                     if(apptDateTime <= currTime){
-                        text = ("Past appointment: " + currAppt.course + " at " + apptDateTime + " with tutor " + currAppt.tutorName);
+                        text = ("Past appointment: " + currAppt.course + " at " + apptDateTime + " with student " + currAppt.studentName);
                     }
                     else{
-                        text = ("Pending appointment: " + currAppt.course + " at " + apptDateTime + " with tutor " + currAppt.tutorName);
+                        text = ("Pending appointment: " + currAppt.course + " at " + apptDateTime + " with student " + currAppt.studentName);
                     }
                     apptIDtoText.set(currAppt.id, text);
                 }            

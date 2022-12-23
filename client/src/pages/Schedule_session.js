@@ -104,6 +104,7 @@ function Schedule_session(props) {
             alert("This Tutor is busy this day try another tutor or time.")
         }else{
             alert("Created appointment");  
+            setShowTutors(false)
             const data2 = {
               email: userData.user.email,
               password: userData.user.password
