@@ -1,9 +1,9 @@
 .home_container{
-  height: relative;
+  height: 115vh;
   /* width: 100vw; */
   background-color: lightgrey;
   font-size: 16px;
-  display: flex
+  display: flex;
 }
 .home_body{
   height: 80vh;

@@ -23,7 +23,7 @@ function Social() {
     if(logged){
         return (
             <div>
-                <Navbar state = {false}/>
+                <Navbar state = {true}/>
                 <div className="home_container">
                     <Sidebar user = {sidebarData} />
 

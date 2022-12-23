@@ -69,27 +69,29 @@ function Trial() {
         )
     }
     else {
-        <div>
-            <Navbar state = {logged}/>
-        <div className="home_container">
-            <div className="home_body">
-                <h1>Free Trial For Schools</h1>
-                <h2>Fill out the information below to learn more about our free trial we offer to schools.</h2>
-                <div className="login form">
-                    <form ref={form} onSubmit={sendEmail}>
-                    <input type="text" required name="contact_title" placeholder="Primary Contact and Title" />
-                    <input type="email" required name="user_email" placeholder="Enter your email address"/>
-                    <input type="text" name="phone" placeholder="Phone Number"/>
-                    <input type="text" required name="school" placeholder="School" />
-                    <input type="text" name="Message" placeholder="Anything else you want to say?" />
-                    
-                    <button type="submit">Send</button>
-                </form>
+        return(
+            <div>
+                <Navbar state = {logged}/>
+            <div className="home_container">
+                <div className="home_body">
+                    <h1>Free Trial For Schools</h1>
+                    <h2>Fill out the information below to learn more about our free trial we offer to schools.</h2>
+                    <div className="login form">
+                        <form ref={form} onSubmit={sendEmail}>
+                        <input type="text" required name="contact_title" placeholder="Primary Contact and Title" />
+                        <input type="email" required name="user_email" placeholder="Enter your email address"/>
+                        <input type="text" name="phone" placeholder="Phone Number"/>
+                        <input type="text" required name="school" placeholder="School" />
+                        <input type="text" name="Message" placeholder="Anything else you want to say?" />
+                        
+                        <button type="submit">Send</button>
+                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
             <Footer userData={null} />
-    </div>
+        </div>
+        )
     }
 
 

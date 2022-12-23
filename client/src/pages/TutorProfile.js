@@ -174,8 +174,8 @@ function TutorProfile(props) {
                 
 
         </div>
-        <Footer userData = {userData}/>
 
+        <Footer userData = {userData}/>
         </div>
       
                
