@@ -178,8 +178,13 @@ function Schedule_session(props) {
               <br/>
               <br/>
               <br/>
-              <label>Choose a course:</label>
-              <ErrorMessage name = "course" component="error" /> 
+              <table>
+                <tr>
+                  <td>
+                  <label>Choose a course:</label>
+                  </td>
+                  <td>
+                  <ErrorMessage name = "course" component="error" /> 
               <Field as="select" name="course">
                 {CoursesList.map((val,key) => {
                   return(          
@@ -188,11 +193,20 @@ function Schedule_session(props) {
                   }
                   )}                          
               </Field>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                  <label>Choose a time: </label>
+                  </td>
+                  <td>
+                    <ErrorMessage name = "date" component="error" /> 
+                    <DatePickerField name="date" />              
+                  </td>
+                </tr>
+              </table>
               <br/>
               <br/>
-              <label>Choose a time: </label>
-              <ErrorMessage name = "date" component="error" /> 
-              <DatePickerField name="date" />              
               <br/>
               <br/>
               <br/>

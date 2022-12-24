@@ -15,7 +15,7 @@ function StudentProfile(props) {
     const [userData] = useState(location.state);
     console.log('userdata: ', userData);
 
-    const initialValues={ first_name: userData.user.first_name, last_name: userData.user.last_name, email: userData.user.email, address: userData.user.address } 
+    const initialValues={ first_name: userData.user.first_name, last_name: userData.user.last_name, email: userData.user.email} 
     console.log("init", initialValues);
     const onSubmit = (data) => {
         console.log("form data", data);
@@ -56,16 +56,10 @@ function StudentProfile(props) {
                         className="form-control inp_text"
                         id="email"
                     />
-                    <label>Address: </label>
-                    <ErrorMessage name = "address" component="error" />
-                    <Field                        
-                        name="address"                        
-                        className="form-control inp_text"
-                        id="address"
-                    />
+                    
                     
                     {/* Click on submit button to submit the form */}
-                    <button type="submit">Login</button>
+                    <button type="submit">Update</button>
                     </Form>
                 </Formik>
             </div>

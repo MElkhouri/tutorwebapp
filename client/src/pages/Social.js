@@ -28,7 +28,6 @@ function Social() {
                     <Sidebar user = {sidebarData} />
 
                     <div className="home_body">
-                        <h1>Razor Tutor</h1>
                         <h2>Currently we don't have any social media links check back later!</h2>
                     </div>
                 </div>
@@ -43,7 +42,6 @@ function Social() {
                 <Navbar state = {false}/>
                 <div className="home_container">
                     <div className="home_body">
-                        <h1>Razor Tutor</h1>
                         <h2>Currently we don't have any social media links check back later!</h2>
                     </div>
                 </div>
@@ -52,8 +50,5 @@ function Social() {
 
         )
     }
-
-
-
 }
 export default Social

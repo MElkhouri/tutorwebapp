@@ -23,7 +23,7 @@ function About() {
                     <div className='home_container'>
                          <Sidebar user = {sidebarData} />                         
                               <div className='about_row_logged'>
-                                   <h1>About us!</h1>
+                                   <h1>About Us</h1>
                                    <div className='about_column_logged'>
                                         <img className="about_img1" alt="1" src={Logo1} height={150} width={150} />
                                    
@@ -55,7 +55,7 @@ function About() {
           return (
                <div>
                     <Navbar state = {false}/>
-                    <h1>About us!</h1>
+                    <h1>About Us</h1>
                     
                     <div className='container'>
                          <div className='about_row'>

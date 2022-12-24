@@ -1,5 +1,5 @@
 .box {
-    padding: 80px;
+    padding: 50px;
     bottom: 0px;
     position: bottom; 
     background: black;
@@ -35,7 +35,7 @@
 }
 .heading {
     font-size: 20px;
-    font-family: 'sans-serif', cursive;
+    font-family: 'sans-serif';
     color: #fff;
     margin-bottom: 40px;
     font-weight: bold;

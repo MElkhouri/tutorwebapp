@@ -22,7 +22,6 @@ function TutorProfile(props) {
     const initialValues={ first_name: userData.user.first_name, 
                           last_name: userData.user.last_name, 
                           email: userData.user.email, 
-                          address: userData.user.address, 
                           bio: userData.user.bio,
                           courses: currentCourses
                           };                   
@@ -106,13 +105,6 @@ function TutorProfile(props) {
                     <Field
                         name="email"
                         id="email"
-                    />
-                    <label>Address: </label>
-                    <ErrorMessage name = "address" component="error" />
-                    <Field                        
-                        name="address"                        
-                        className="form-control inp_text"
-                        id="address"
                     />
                     <label>Bio: </label>
                     <ErrorMessage name = "bio" component="error" />
