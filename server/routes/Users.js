@@ -7,8 +7,8 @@ const { Op } = require("sequelize");
 const connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'localSQL',
-	database : 'webapp'
+	password : 'ishan2001',
+	database : 'razortutordb'
 });
 
 router.get("/", (req, res) => {
