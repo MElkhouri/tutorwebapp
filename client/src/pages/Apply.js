@@ -26,17 +26,10 @@ function Apply() {
   };
 
   const handleFileInput = (e) => {
-    console.log("handlefileinput handler");
-    console.log(e.target.files[0]);
-   // console.log(setSelectedFile(e.target.files[0]));
-    console.log(selectedFile);
     function getExtension(filename) {
-        console.log("in helper function");
         return filename.split('.').pop();
     };
     //error here add a way of checking filetype. Not sure why some logs are not coming through.
-    console.log("before if");
-    console.log("hi " + selectedFile.name);
 
     if( !(getExtension(selectedFile.name).toLowerCase() === "pdf" 
     || getExtension(selectedFile.name).toLowerCase() === "docx") ){

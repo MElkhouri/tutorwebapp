@@ -6,9 +6,7 @@ import {useState} from 'react';
 
 function Sidebar(props){
     const navigate = useNavigate();
-    //console.log("sidebar props", props);
     let userData = props.user;    
-    //console.log('SIDEBAR User before: ', userData)    
     return (
         <div className='Sidebar'>
             <ul className='sidebar-list'>

@@ -17,7 +17,6 @@ function TutorHome(props) {
     const [selectedAppointmentText, setSelectedAppointmentText] = useState("");
     const [selectedDate, setSelectedDate] = useState(moment(new Date()).format("YYYY-MM-DD").toString() + "")
     const [apptIDtoText] = useState(new Map());
-    console.log('Tutor userdata: ', userData.user);    
     const setMapValue = (map, key, value) => {
         if(!map.has(key)){
             map.set(key, new Array(value))
@@ -32,13 +31,11 @@ function TutorHome(props) {
         let currTime = moment(new Date()).format("MM-DD-YY hh:mm A").toString()
         setSelectedDate(select);
         let obj = noTimeMap.get(select);
-        console.log('Obj:',obj);
         if(obj != undefined){
             for(let i = 0; i < obj.length; i++){
                 let currAppt = obj[i];
                 
                 if(!currAppt.isRequest){
-                    console.log("Upcoming");
                     let appt = new Date(currAppt.date);
                     appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
                     let apptDateTime = moment(appt).format("MM-DD-YY hh:mm A")
@@ -54,7 +51,6 @@ function TutorHome(props) {
                     
                 }
                 else{
-                    console.log("pending");
                     let appt = new Date(currAppt.date);
                     appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
                     let apptDateTime = moment(appt).format("MM-DD-YY hh:mm A")
@@ -73,7 +69,6 @@ function TutorHome(props) {
             setSelectedAppointmentText("No sessions on selected date");
         }
         
-        console.log('TETL', apptIDtoText);
     }
     
 
@@ -103,39 +98,29 @@ function TutorHome(props) {
             previousAppointments.push(currDate);
         }
     }   
-    console.log("MAP:", dateToApptMap);
     if(upcomingAppointments.length > 0){
         upcomingAppointments.sort(function (a, b) {
             return Math.abs(new Date() - new Date(a)) - Math.abs(new Date() - new Date(b));
         });
     }
-    console.log("AFTER: ",upcomingAppointments)
     if(dateToApptMap.size > 0){
         if(getNextAppt == 0){
-            console.log("ASDFEG")
-            console.log(dateToApptMap.size);
             let min = moment(new Date(8640000000000000)).format("YYYY-MM-DD hh:mm A")
-            console.log("mn: ", min)
             for (const appt of dateToApptMap.keys()) {  
                 let temp = new Date(dateToApptMap.get(appt)[0].date);
                 temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
                 let currDate = moment(temp).format("YYYY-MM-DD hh:mm A")
-                console.log("curr", currDate);
                 if(currDate < min){
-                    console.log("here");
                     min = currDate
                 }
-                console.log("min:", min)
             }
             if(min == moment(new Date()).format("YYYY-MM-DD hh:mm A")){
                 let info = dateToApptMap.get(min)[0];
-                console.log("info", info);
                 let reformat = moment(min).format("MM-DD-YY hh:mm A")
                 setUpcomingAppointmentText("Appointment today " + info.studentName + " for " + info.course + " at " + reformat)
             }
             if(min > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
                 let info = dateToApptMap.get(min)[0];
-                console.log("info", info);
                 let reformat = moment(min).format("MM-DD-YY hh:mm A")
                 setUpcomingAppointmentText("Next appointment is at " + reformat + " with " + info.studentName + " for " + info.course)
             }
@@ -151,8 +136,6 @@ function TutorHome(props) {
         return (
           <Calendar
           className='calendar' tileClassName={({ date, view }) => { 
-            // console.log(moment(new Date(date)).format("YYYY-MM-DD"));
-            // console.log("Upcoming:", upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD")).toString());       
             let today = moment(new Date()).format("YYYY-MM-DD").toString()
             let current = moment(new Date(date)).format("YYYY-MM-DD").toString();
             if(upcomingAppointments.includes(current)){
@@ -190,8 +173,6 @@ function TutorHome(props) {
                     {console.log(noTimeMap.get(selectedDate) + " " + selectedDate)}
                     {(noTimeMap.get(selectedDate) != undefined) && 
                         (noTimeMap.get(selectedDate)).map((val,key) => {
-                            console.log("val", val);
-                            console.log("text", apptIDtoText);
                             return(
                                 <div className='select_text'>
                                     <p className='righttxt'>{apptIDtoText.get(val.id)}</p>

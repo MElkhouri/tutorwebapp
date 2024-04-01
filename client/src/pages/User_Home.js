@@ -13,8 +13,6 @@ function UserHome(props){
     
     const location = useLocation();
     let [userData] = useState(location.state);
-    console.log('userdata: ', userData);
-    console.log('props', props);
     const value = useState(new Date());
     const [getNextAppt, setNextAppt] = useState(0);
     const [upcomingAppointmentText, setUpcomingAppointmentText] = useState("No Upcoming Appointments");
@@ -34,13 +32,11 @@ function UserHome(props){
         let currTime = moment(new Date()).format("MM-DD-YY hh:mm A").toString()
         setSelectedDate(select);
         let obj = noTimeMap.get(select);
-        console.log('Obj:',obj);
         if(obj != undefined){
             for(let i = 0; i < obj.length; i++){
                 let currAppt = obj[i];
                 
                 if(!currAppt.isRequest){
-                    console.log("Upcoming");
                     let appt = new Date(currAppt.date);
                     appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
                     let apptDateTime = moment(appt).format("MM-DD-YY hh:mm A")
@@ -56,7 +52,6 @@ function UserHome(props){
                     
                 }
                 else{
-                    console.log("pending");
                     let appt = new Date(currAppt.date);
                     appt.setTime(appt.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
                     let apptDateTime = moment(appt).format("MM-DD-YY hh:mm A")
@@ -73,9 +68,7 @@ function UserHome(props){
         }        
         else {
             setSelectedAppointmentText("No sessions on selected date");
-        }
-        
-        console.log('TETL', apptIDtoText);
+        }        
     }
     
     let upcomingAppointments = [];
@@ -105,7 +98,6 @@ function UserHome(props){
             previousAppointments.push(currDate);         
         }
     }   
-    console.log('No TIme MAP: ', noTimeMap);
     if(upcomingAppointments.length > 0){
         upcomingAppointments.sort(function (a, b) {
             return Math.abs(Date.now() - new Date(b.toDate)) - Math.abs(Date.now() - new Date(a.toDate));
@@ -113,15 +105,12 @@ function UserHome(props){
     }
     if(dateToApptMap.size > 0){   
         if(getNextAppt == 0){
-            console.log(dateToApptMap);
             let min = moment(new Date(8640000000000000)).format("YYYY-MM-DD hh:mm A")
-            console.log(min);
             for (const appt of dateToApptMap.keys()) {  
                 let temp = new Date(dateToApptMap.get(appt)[0].date);
                 temp.setTime(temp.getTime() + new Date().getTimezoneOffset() * 60 * 1000);                          
                 let currDate = moment(temp).format("YYYY-MM-DD hh:mm A")
                 if(currDate < min){
-                    console.log("here");
                     min = currDate
                 }
             }
@@ -133,7 +122,6 @@ function UserHome(props){
             if(min > moment(new Date()).format("YYYY-MM-DD hh:mm A")){
                 let info = dateToApptMap.get(min)[0];
                 let reformat = moment(min).format("MM-DD-YY hh:mm A")
-                console.log("INFO: ", info);
                 setUpcomingAppointmentText("Next appointment is at " + reformat + " with " + info.tutorName + " for " + info.course)
             }
             setNextAppt(1);
@@ -148,8 +136,6 @@ function UserHome(props){
         return (
           <Calendar
           className='calendar' tileClassName={({ date, view }) => { 
-            // console.log(moment(new Date(date)).format("YYYY-MM-DD"));
-            // console.log("Upcoming:", upcomingAppointments.includes(moment(new Date(date)).format("YYYY-MM-DD")).toString());
             let today = moment(new Date()).format("YYYY-MM-DD").toString()
             let current = moment(new Date(date)).format("YYYY-MM-DD").toString();
             if(upcomingAppointments.includes(current)){
@@ -172,7 +158,6 @@ function UserHome(props){
           />
         );
     };
-    console.log('user home data: ', data);
     // axios.post("http://localhost:3001/appointments/getUserAppointments", data).then((response) => {
     //     console.log("data", response.data);
     //     if(response.data === 'No appointments'){
@@ -202,8 +187,6 @@ function UserHome(props){
                     {console.log(noTimeMap.get(selectedDate) + " " + selectedDate)}
                     {(noTimeMap.get(selectedDate) != undefined) && 
                         (noTimeMap.get(selectedDate)).map((val,key) => {
-                            console.log("val", val);
-                            console.log("text", apptIDtoText);
                             return(
                                 <div className='select_text'>
                                     <p className='righttxt'>{apptIDtoText.get(val.id)}</p>

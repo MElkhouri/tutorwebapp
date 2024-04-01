@@ -13,12 +13,10 @@ import Footer from "./footer"
 function TutorProfile(props) {    
     const location = useLocation();
     let [userData] = useState(location.state);
-    console.log('userdata: ', userData);
     const MathCourses = ['Calculus 1', 'Calculus 2', 'Calculus 3', 'Geometry'];
     const ScienceCourses = ['Chemistry 1', 'Physics 1', 'Biology 1', 'Biology 2'];
     const ComputerCourses = ['Intro to Computer Science', 'Data Structures', 'CyberSecurity'];
     let currentCourses = userData.user.courses !== (null) ? userData.user.courses.split("/") : null;
-    console.log("current", currentCourses);
     const initialValues={ first_name: userData.user.first_name, 
                           last_name: userData.user.last_name, 
                           email: userData.user.email, 
@@ -26,7 +24,6 @@ function TutorProfile(props) {
                           courses: currentCourses
                           };                   
                           
-    console.log("init", initialValues);
     const dataIsUnchanged = (data) => {
         if(data.first_name === initialValues.first_name &&
             data.last_name === initialValues.last_name &&
@@ -45,22 +42,17 @@ function TutorProfile(props) {
         for(let i = 0; i <= courses.length-1; i++){
             result += courses[i] + '/';
         }
-        console.log("result: ", result);
         return result;
     }
     
     const onSubmit = (data) => {    
-        console.log("data: ", data);
         let tutorCourses = courseToString(data.courses)
         data.tutorCourses = tutorCourses;
         if(dataIsUnchanged(data)){
             alert("profile data is unchanged");
         }else{
-            console.log("HELLO");
             data.id = userData.user.id; 
-            console.log('send',data);
             axios.put("http://localhost:3001/users/updateTutorProfile", data).then((response) => {
-                console.log(response)
                 if(response.data === -1){
                     alert("Error processing update.")
                 }else{

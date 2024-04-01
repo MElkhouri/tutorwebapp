@@ -24,7 +24,6 @@ import Footer from "./footer";
 function Schedule_session(props) {
   const location = useLocation();
   const [userData, setUserData] = useState(location.state);
-  //console.log(userData);
   const [course, setCourse] = useState("");
   const [tutorID, setTutorID] = useState("");
   const [showTutors, setShowTutors] = useState(false);
@@ -36,7 +35,6 @@ function Schedule_session(props) {
   const handleShow = () => setShow(true);
 
   const handleSelect = (e) => {
-    //console.log(e);
    setCourse(e.target.value);
   }
 
@@ -66,7 +64,6 @@ function Schedule_session(props) {
   const removeBookedTutors = (tutors) => {
     for(let i = 0; i < tutors.length; i++){
       let curr = tutors[i]
-      console.log('CURRENT: ',curr);
       for(let j = 0; j < curr.Appointments.length; j++){
         let date = curr.Appointments[j].date.toString();
         let temp = new Date(startDate);
@@ -83,9 +80,7 @@ function Schedule_session(props) {
     else  
       return false;
   };
-  const selectTutor = (tutor) => {    
-    console.log("selected: ", selectedCourse);
-    console.log("Dataees: ", startDate);
+  const selectTutor = (tutor) => {
     let date = new Date(startDate);
     date.setTime(date.getTime() - new Date().getTimezoneOffset() * 60 * 1000);  
     date = date.toISOString();
@@ -97,9 +92,7 @@ function Schedule_session(props) {
       tutorName: tutor.first_name,
       course: selectedCourse      
     }
-    console.log("appt data: ",data);
     axios.post("http://localhost:3001/appointments/createAppointment", data).then((response) => {
-        console.log(response)
         if(response.data === 'Appointment already exists. Try another'){
             alert("This Tutor is busy this day try another tutor or time.")
         }else{
@@ -109,10 +102,7 @@ function Schedule_session(props) {
               email: userData.user.email,
               password: userData.user.password
             }
-            console.log("PRE: ",userData)
-            console.log("data: ",data2)
             axios.post("http://localhost:3001/users/auth", data2).then((response) => {
-                console.log(response.data[0])
                 if(response.data === -1){
                     alert("Incorrect login credentials please try again.")
                 }
@@ -120,16 +110,6 @@ function Schedule_session(props) {
                     setUserData({user: response.data[0]});
                 }
             });
-            console.log("Post: ",userData)          
-            // userData.user.Appointments.push({
-            //   date: startDate,
-            //   tutor: tutor.id, 
-            //   student: userData.user.id, 
-            //   studentName: userData.user.first_name,
-            //   tutorName: tutor.first_name,
-            //   course: selectedCourse,
-            //   isRequest: true      
-            // })
         }
     }).catch(console.log('catch'));     
   }
@@ -139,16 +119,13 @@ function Schedule_session(props) {
     temp.setTime(temp.getTime() - new Date().getTimezoneOffset() * 60 * 1000);
     let newDate = (temp.toISOString().split('T')[0] + " " + temp.toISOString().split('T')[1].split('.')[0]);
     data.date = newDate;
-    console.log("find tutor: ", data);
     axios.post("http://localhost:3001/users/findTutors", data).then((response) => {
-        console.log(response)
         if(response.data === 'No tutors found'){
             alert("No tutors found.")
             setFoundTutors([]);
             setShowTutors(false); 
         }else{
             if(removeBookedTutors(response.data)){
-              alert("found tutors");
               setShowTutors(true); 
               setFoundTutors(response.data);            
             }
@@ -157,9 +134,6 @@ function Schedule_session(props) {
               setFoundTutors([]);
               setShowTutors(false); 
             }
-            // console.log("Found data: ", response.data);
-            
-            // console.log("Found: ", foundTutors);
         }
     }).catch(console.log('catch'));     
   }
@@ -228,7 +202,6 @@ function Schedule_session(props) {
                   <th>Rating</th>
                 </tr>
                 {foundTutors.map((val, key) => {
-                  console.log("value: ", val);
                   let rating = (val.rating == null) ? "No Rating": val.rating;
                   return (
                     <tr>

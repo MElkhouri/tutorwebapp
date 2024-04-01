@@ -13,7 +13,6 @@ router.post("/getUserAppointments", async (req, res) => {
     const allAppointments = await Appointments.findAll({
         where: {student: req.body.student, date: {[Op.gte]: req.body.date}}
     });
-    console.log("all APP: ", allAppointments);
     if(allAppointments.length > 0){
         res.send(allAppointments);
     } else {
@@ -22,7 +21,6 @@ router.post("/getUserAppointments", async (req, res) => {
 });
 router.post("/createAppointment", async (req, res) => {
 
-    console.log("Request: ", req.body);
     let temp = new Date(req.body.date);
     temp.setTime(temp.getTime());
 	let date = temp; 
@@ -31,7 +29,6 @@ router.post("/createAppointment", async (req, res) => {
         defaults: {date: date, tutorID: req.body.tutorID, studentID: req.body.studentID, tutorName: req.body.tutorName, studentName: req.body.studentName, course: req.body.course, isRequest: true}
     });
     if(created){
-        console.log("CREATED", row);
         res.send(row);
     }
     else{
@@ -49,18 +46,13 @@ router.post("/acceptAppointment", async (req, res) => {
 }); 
 router.delete("/deleteAppointment", async (req, res) => {
 
-    console.log("Request bodyasdafe: ", req.body);
     const appointment = await Appointments.findAll({
         where: {id: req.body.data}}
     );
-    console.log("APPT: ", appointment);
-    // if(appointment){
 
-    // }
     const result = await Appointments.destroy({ 
         where: {id: req.body.data}, 
     });
-    console.log("delete result: ", result);
     res.send(""+result);
    
 });

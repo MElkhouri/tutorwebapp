@@ -5,10 +5,8 @@ import Table from 'react-bootstrap/Table';
 
 
 function TutorTable(props){
-    console.log(props);
     let userData = props.state;
     const onSubmit = (data) => {
-        //console.log(data);  
         
         axios.get("http://localhost:3001/tutors").then((response) => {
           console.log(response)

@@ -7,15 +7,10 @@ import Logo from '../assets/PNG/condensedLogo.png'
 
 
 function Navbar(props){
-
-    console.log(props);
     let logged = props.state;
-
-    
     switch(logged) {
 
         case true:
-            console.log("logged = true");    
             return (
                 <div className='App'>
                 
@@ -51,7 +46,6 @@ function Navbar(props){
                 ); 
                 break;
         default:
-            console.log("Printing null in navbar component");
             return null;
     }
        

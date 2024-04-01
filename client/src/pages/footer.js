@@ -4,10 +4,8 @@ import Logo from '../assets/PNG/logo.png'
 import {useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom";
 function Footer(props) {
-	console.log('Footer: ', props.userData);
 	let sendData = props.userData
 	if(props.userData != null){
-		console.log("GEASDFE; ", props.userData)
 		sendData = props.userData.user
 	}
 	const navigate = useNavigate();

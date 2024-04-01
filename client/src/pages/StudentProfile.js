@@ -13,12 +13,9 @@ import Footer from './footer';
 function StudentProfile(props) {    
     const location = useLocation();
     const [userData] = useState(location.state);
-    console.log('userdata: ', userData);
 
     const initialValues={ first_name: userData.user.first_name, last_name: userData.user.last_name, email: userData.user.email} 
-    console.log("init", initialValues);
     const onSubmit = (data) => {
-        console.log("form data", data);
     } 
     return (
         <div>

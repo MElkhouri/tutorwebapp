@@ -41,7 +41,6 @@ function Register() {
       });
     const initialValues={ email: "", password: "", address: "", school: "", role: "1", first_name: "", last_name: "",type: "student" } //have to add a way to input role in future for teachers "2" and make it a button, also make school a DDL
     const onSubmit= (data) => {
-      console.log(data);
       // getting error sending "data" over probably because  
       if(data.type[0] === "tutor"){
         data.role="2";

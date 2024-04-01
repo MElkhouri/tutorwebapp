@@ -14,7 +14,6 @@ function Social() {
     const location = useLocation();
     const [state] = useState(location.state);        
     let logged = false;
-    console.log('SATE:', state)
     if(state.user !== null){
          logged = true;
     }     

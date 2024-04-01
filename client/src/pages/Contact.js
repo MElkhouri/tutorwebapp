@@ -12,7 +12,6 @@ function Contact() {
     const location = useLocation();
     const [state] = useState(location.state);        
     let logged = false;
-    console.log('SATE:', state)
     if(state.user !== null){
         logged = true;
     }
@@ -27,10 +26,8 @@ function Contact() {
   
       emailjs.sendForm('service_qgy7z78', 'template_7z38wxd', form.current, 'PKWK63FQmkCdYEeqO')
         .then((result) => {
-            console.log(result.text);
             alert("Message sent!");
         }, (error) => {
-            console.log(error.text);
             alert(error.text);
         });
         form.current.reset();

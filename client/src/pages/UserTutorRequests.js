@@ -23,7 +23,6 @@ function UserTutorRequests(props) {
     const [reRender, setReRender] = useState(false);
 
     const appointments = userData.user.Appointments;
-    console.log("request: ",appointments);
 
     useEffect(() => {
         const data2 = {
@@ -31,7 +30,6 @@ function UserTutorRequests(props) {
             password: userData.user.password
         }
         axios.post("http://localhost:3001/users/auth", data2).then((response) => {
-            console.log(response.data[0])
             if(response.data === -1){
                 alert("Incorrect login credentials please try again.")
             }
@@ -39,15 +37,13 @@ function UserTutorRequests(props) {
                 setUserData({user: response.data[0]});
             }
         });
-        console.log("POST EFFECT:", userData);
         setReRender(false)
     }, [reRender])
     const deleteRequest = async (deleteAppt) => {   
-        console.log("deletE: ",deleteAppt);
         await axios.delete("http://localhost:3001/appointments/deleteAppointment", {
             data: { data: deleteAppt.id },
         }).then((response) => {
-            console.log("DELETE: ", response);
+            console.log(response);
         }).catch(error => {
             console.error('There was an error!', error);
         });
