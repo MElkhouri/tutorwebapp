@@ -7,7 +7,7 @@ const { Op } = require("sequelize");
 const connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'ishan2001',
+	password : 'XXXX',
 	database : 'razortutordb'
 });
 
